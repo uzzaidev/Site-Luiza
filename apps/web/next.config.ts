@@ -33,12 +33,8 @@ const nextConfig: NextConfig = {
     } : false,
   },
 
-  // Transpilar pacotes do monorepo
-  transpilePackages: [
-    '@template/ui',
-    '@template/design-tokens',
-    '@template/core'
-  ],
+  // Sem pacotes workspace para transpilar neste projeto
+  transpilePackages: [],
 
   // Headers de segurança e performance
   poweredByHeader: false,
@@ -50,8 +46,6 @@ const nextConfig: NextConfig = {
   // Experimental features para performance
   experimental: {
     optimizePackageImports: [
-      '@template/ui',
-      '@template/core',
       'lucide-react',
       'framer-motion',
       '@radix-ui/react-dialog',

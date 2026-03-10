@@ -1,11 +1,8 @@
-const path = require('path');
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: [
     './app/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
-    path.join(path.dirname(require.resolve('@template/ui/package.json')), 'src/**/*.{js,ts,jsx,tsx}'),
   ],
   theme: {
     extend: {

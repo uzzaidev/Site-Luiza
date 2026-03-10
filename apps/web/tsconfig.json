@@ -20,13 +20,7 @@
     ],
     "baseUrl": ".",
     "paths": {
-      "@/*": ["./*"],
-      "@template/ui": ["../../packages/ui/src"],
-      "@template/ui/*": ["../../packages/ui/src/*"],
-      "@template/design-tokens": ["../../packages/design-tokens/src"],
-      "@template/design-tokens/*": ["../../packages/design-tokens/src/*"],
-      "@template/core": ["../../packages/core/src"],
-      "@template/core/*": ["../../packages/core/src/*"]
+      "@/*": ["./*"]
     }
   },
   "include": [
