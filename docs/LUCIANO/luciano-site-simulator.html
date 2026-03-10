@@ -1,0 +1,1123 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simulador de Conteúdo | Luciano Giorgetta</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@400;600&family=Inter:wght@400;500;600&display=swap"
+        rel="stylesheet">
+    <style>
+        /* ===== RESET & VARIÁVEIS ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --navy: #1A3A52;
+            --gold: #D4AF37;
+            --off-white: #F8F9FA;
+            --charcoal: #2C3E50;
+            --gray: #6B7280;
+            --font-display: 'Playfair Display', serif;
+            --font-sans: 'Montserrat', sans-serif;
+            --font-body: 'Inter', sans-serif;
+        }
+
+        body {
+            font-family: var(--font-body);
+            color: var(--charcoal);
+            line-height: 1.7;
+            background: var(--off-white);
+            padding-bottom: 0;
+            /* Footer is now part of the flow */
+        }
+
+        /* ===== CONTROLES DO SIMULADOR ===== */
+        .sim-control {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 24px;
+            height: 24px;
+            background: #2563EB;
+            color: white;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 14px;
+            margin-left: 8px;
+            vertical-align: middle;
+            border: none;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s;
+            position: relative;
+            z-index: 1000;
+        }
+
+        .sim-control:hover {
+            transform: scale(1.1);
+            background: #1D4ED8;
+        }
+
+        .sim-label {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 30px;
+            z-index: 9999;
+            font-family: sans-serif;
+            font-size: 14px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+        }
+
+        /* ===== ESTILOS ORIGINAIS (Adaptados) ===== */
+
+        /* Header */
+        header {
+            background: var(--navy);
+            padding: 1.5rem 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 4px 12px rgba(26, 58, 82, 0.15);
+        }
+
+        nav {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--off-white);
+            text-decoration: none;
+            font-family: var(--font-sans);
+            font-weight: 500;
+            font-size: 0.95rem;
+        }
+
+        /* Hero */
+        .hero {
+            background: linear-gradient(135deg, var(--navy) 0%, #0F2537 100%);
+            color: white;
+            padding: 8rem 2rem 6rem;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+            display: grid;
+            grid-template-columns: 1.2fr 1fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        .hero-text h1 {
+            font-family: var(--font-display);
+            font-size: 3.5rem;
+            font-weight: 700;
+            line-height: 1.2;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-text .subtitle {
+            font-size: 1.3rem;
+            color: rgba(255, 255, 255, 0.9);
+            margin-bottom: 2rem;
+            line-height: 1.6;
+        }
+
+        .hero-text .tagline {
+            font-family: var(--font-display);
+            font-style: italic;
+            font-size: 1.1rem;
+            color: var(--gold);
+            margin-bottom: 3rem;
+            border-left: 3px solid var(--gold);
+            padding-left: 1.5rem;
+        }
+
+        .btn {
+            padding: 1rem 2.5rem;
+            border-radius: 8px;
+            font-family: var(--font-sans);
+            font-weight: 600;
+            font-size: 1rem;
+            text-decoration: none;
+            display: inline-block;
+            cursor: pointer;
+        }
+
+        .btn-primary {
+            background: var(--gold);
+            color: var(--navy);
+        }
+
+        .hero-image {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 16px;
+            padding: 2rem;
+            border: 2px solid rgba(212, 175, 55, 0.2);
+            text-align: center;
+            min-height: 400px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.5);
+        }
+
+        /* Sobre */
+        .sobre {
+            padding: 6rem 2rem;
+            background: white;
+        }
+
+        .sobre-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            font-family: var(--font-display);
+            font-size: 2.8rem;
+            color: var(--navy);
+            margin-bottom: 1rem;
+            text-align: center;
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--gray);
+            font-size: 1.2rem;
+            margin-bottom: 4rem;
+        }
+
+        /* Timeline */
+        .timeline {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .timeline-item {
+            background: var(--off-white);
+            padding: 2.5rem;
+            border-radius: 12px;
+            border-left: 4px solid var(--gold);
+            transition: transform 0.3s ease;
+        }
+
+        .timeline-year {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+        }
+
+        .timeline-title {
+            font-family: var(--font-sans);
+            font-size: 1.3rem;
+            color: var(--navy);
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .timeline-text {
+            color: var(--charcoal);
+            line-height: 1.7;
+        }
+
+        /* Stats */
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            background: linear-gradient(135deg, var(--navy), #0F2537);
+            padding: 3rem;
+            border-radius: 16px;
+            color: white;
+            margin-top: 4rem;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: var(--font-display);
+            font-size: 3rem;
+            color: var(--gold);
+            font-weight: 700;
+            display: block;
+            margin-bottom: 0.5rem;
+        }
+
+        .stat-label {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        /* Filosofia */
+        .filosofia {
+            padding: 6rem 2rem;
+            background: var(--off-white);
+        }
+
+        .filosofia-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .filosofia-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .filosofia-card {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            position: relative;
+        }
+
+        .filosofia-card::before {
+            content: '◆';
+            color: var(--gold);
+            font-size: 1.5rem;
+            display: block;
+            margin-bottom: 1rem;
+        }
+
+        .filosofia-card h3 {
+            font-family: var(--font-sans);
+            font-size: 1.5rem;
+            color: var(--navy);
+            margin-bottom: 1rem;
+        }
+
+        /* Aulas */
+        .aulas {
+            padding: 6rem 2rem;
+            background: white;
+        }
+
+        .aulas-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .aulas-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            /* 3 cards agora */
+            gap: 2.5rem;
+        }
+
+        .aula-card {
+            background: var(--off-white);
+            padding: 2.5rem;
+            border-radius: 12px;
+            text-align: center;
+            border: 2px solid transparent;
+        }
+
+        .aula-card.highlight {
+            border-color: var(--gold);
+            background: white;
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        .aula-icon {
+            width: 60px;
+            height: 60px;
+            background: var(--navy);
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--gold);
+            font-size: 1.5rem;
+        }
+
+        .aula-card h3 {
+            font-family: var(--font-sans);
+            font-size: 1.4rem;
+            color: var(--navy);
+            margin-bottom: 1rem;
+        }
+
+        .aula-features {
+            list-style: none;
+            text-align: left;
+            margin-top: 2rem;
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+
+        .aula-features li {
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .aula-features li::before {
+            content: '✓';
+            color: var(--gold);
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        /* Depoimentos */
+        .depoimentos {
+            padding: 6rem 2rem;
+            background: var(--off-white);
+        }
+
+        .depoimentos-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .depoimentos-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .depoimento-card {
+            background: white;
+            padding: 3rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+            position: relative;
+        }
+
+        .depoimento-card::before {
+            content: '“';
+            font-family: var(--font-display);
+            font-size: 4rem;
+            color: #E5E7EB;
+            position: absolute;
+            top: 1rem;
+            left: 2rem;
+            line-height: 1;
+        }
+
+        .depoimento-text {
+            font-style: italic;
+            color: var(--charcoal);
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .depoimento-author {
+            font-weight: 600;
+            color: var(--navy);
+            font-size: 0.9rem;
+        }
+
+        /* Contato CTA */
+        .contato-cta {
+            background: var(--navy);
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+            margin-top: 4rem;
+        }
+
+        .contato-container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .contato-cta h2 {
+            font-family: var(--font-display);
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .contato-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-top: 3rem;
+        }
+
+        .contato-item {
+            text-align: center;
+        }
+
+        .contato-item strong {
+            display: block;
+            color: var(--gold);
+            margin-bottom: 0.5rem;
+            font-family: var(--font-sans);
+        }
+
+        .divider {
+            height: 2px;
+            background: #ddd;
+            margin: 4rem 0;
+            position: relative;
+        }
+
+        .divider::after {
+            content: 'SEÇÃO: ' attr(data-label);
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ddd;
+            padding: 0 1rem;
+            font-weight: bold;
+            color: #555;
+            font-size: 0.8rem;
+        }
+
+        /* Footer */
+        footer {
+            background: #0F2537;
+            color: rgba(255, 255, 255, 0.7);
+            padding: 3rem 2rem 2rem;
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 968px) {
+
+            .hero-content,
+            .filosofia-grid,
+            .aulas-grid,
+            .timeline,
+            .stats,
+            .depoimentos-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .hero-text h1 {
+                font-size: 2.5rem;
+            }
+
+            .contato-info {
+                flex-direction: column;
+                gap: 2rem;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="sim-label">Simulador de Conteúdo v1.3</div>
+
+    <!-- HEADER (Fixo) -->
+    <header>
+        <nav>
+            <a href="#" class="logo">Luciano <span>Giorgetta</span></a>
+            <ul class="nav-links">
+                <li><a href="#">Início</a></li>
+                <li><a href="#">Sobre</a></li>
+                <li><a href="#">Aulas</a></li>
+                <li><a href="#">Contato</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- 1. HOME: HERO SECTION -->
+    <section class="hero">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>
+                    <span id="home-hero-title" data-var="0">Energia que não acaba. Clareza que transforma.</span>
+                    <button class="sim-control"
+                        onclick="cycleText('home-hero-title', variations.homeHeroTitle)">↻</button>
+                </h1>
+                <p class="subtitle">
+                    <span id="home-hero-subtitle" data-var="0">Yôga e filosofia para quem busca qualidade de vida real,
+                        não promessas místicas.</span>
+                    <button class="sim-control"
+                        onclick="cycleText('home-hero-subtitle', variations.homeHeroSubtitle)">↻</button>
+                </p>
+                <p class="tagline">
+                    <span id="home-hero-tagline" data-var="0">"Yôga para corpos reais, filosofia para mentes
+                        livres."</span>
+                    <button class="sim-control"
+                        onclick="cycleText('home-hero-tagline', variations.homeHeroTagline)">↻</button>
+                </p>
+                <a href="#" class="btn btn-primary">Agendar Aula Experimental</a>
+            </div>
+            <div class="hero-image">
+                <p>[Foto Hero]</p>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider" data-label="HOME: SOBRE"></div>
+
+    <!-- 2. HOME: SEÇÃO SOBRE -->
+    <section class="sobre">
+        <div class="sobre-container">
+            <h2 class="section-title">
+                <span id="home-about-title" data-var="0">Do Caos à Quietude</span>
+                <button class="sim-control"
+                    onclick="cycleText('home-about-title', variations.homeAboutTitle)">↻</button>
+            </h2>
+            <p class="section-subtitle" style="max-width: 800px; margin-left: auto; margin-right: auto;">
+                <span id="home-about-text" data-var="0">A jornada de transformação através da prática. De skatista e
+                    tatuador a instrutor nível 3.</span>
+                <button class="sim-control" onclick="cycleText('home-about-text', variations.homeAboutText)">↻</button>
+            </p>
+
+            <!-- TIMELINE -->
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">2013</div>
+                    <h3 class="timeline-title">
+                        <span id="timeline-title-1" data-var="0">O Primeiro Contato</span>
+                        <button class="sim-control"
+                            onclick="cycleText('timeline-title-1', variations.timelineTitle1)">↻</button>
+                    </h3>
+                    <p class="timeline-text">
+                        <span id="timeline-text-1" data-var="0">Aos 15 anos, por indicação da mãe, experimentei a
+                            primeira aula de Yôga. Senti mais energia, disposição e rendimento no skate. Foi quando
+                            percebi: isso funciona de verdade.</span>
+                        <button class="sim-control"
+                            onclick="cycleText('timeline-text-1', variations.timelineText1)">↻</button>
+                    </p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">2013-2021</div>
+                    <h3 class="timeline-title">
+                        <span id="timeline-title-2" data-var="0">Tatuador & Praticante</span>
+                        <button class="sim-control"
+                            onclick="cycleText('timeline-title-2', variations.timelineTitle2)">↻</button>
+                    </h3>
+                    <p class="timeline-text">
+                        <span id="timeline-text-2" data-var="0">Durante 8 anos, trabalhei como tatuador profissional
+                            (estilo oriental/japonês) enquanto praticava Yôga. A filosofia começou a fazer cada vez mais
+                            sentido.</span>
+                        <button class="sim-control"
+                            onclick="cycleText('timeline-text-2', variations.timelineText2)">↻</button>
+                    </p>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">2021</div>
+                    <h3 class="timeline-title">
+                        <span id="timeline-title-3" data-var="0">Instrutor de Yôga</span>
+                        <button class="sim-control"
+                            onclick="cycleText('timeline-title-3', variations.timelineTitle3)">↻</button>
+                    </h3>
+                    <p class="timeline-text">
+                        <span id="timeline-text-3" data-var="0">Transição de carreira. Queria transmitir o que estava
+                            vivendo: melhora na qualidade de vida, clareza mental, energia constante. Hoje sou Nível 3
+                            pela Humana.</span>
+                        <button class="sim-control"
+                            onclick="cycleText('timeline-text-3', variations.timelineText3)">↻</button>
+                    </p>
+                </div>
+            </div>
+
+            <!-- STATS -->
+            <div class="stats">
+                <div class="stat-item">
+                    <span class="stat-number">13</span>
+                    <span class="stat-label">Anos de Prática</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">5</span>
+                    <span class="stat-label">Anos como Instrutor</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">200+</span>
+                    <span class="stat-label">Alunos Atendidos</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">1000+</span>
+                    <span class="stat-label">Práticas Ministradas</span>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <div class="divider" data-label="HOME: FILOSOFIA"></div>
+
+    <!-- 3. HOME: SEÇÃO FILOSOFIA -->
+    <section class="filosofia">
+        <div class="filosofia-container">
+            <h2 class="section-title">
+                <span id="home-philo-title" data-var="0">Filosofia Acessível</span>
+                <button class="sim-control"
+                    onclick="cycleText('home-philo-title', variations.homePhiloTitle)">↻</button>
+            </h2>
+
+            <div class="filosofia-grid">
+                <!-- Card 1 -->
+                <div class="filosofia-card">
+                    <h3>Samkhya & Tantra</h3>
+                    <p>
+                        <span id="home-philo-card1" data-var="0">Trabalho com a linhagem Samkhya Tantra: naturalista,
+                            não místico, focado em liberdade e autoconhecimento.</span>
+                        <button class="sim-control"
+                            onclick="cycleText('home-philo-card1', variations.homePhiloCard1)">↻</button>
+                    </p>
+                </div>
+                <!-- Card 2 -->
+                <div class="filosofia-card">
+                    <h3>Didática Clara</h3>
+                    <p>
+                        <span id="home-philo-card3" data-var="0">Consigo transmitir conceitos complexos de forma
+                            acessível. Filosofia profunda, mas sem complicação. Para pessoas reais, com vidas
+                            reais.</span>
+                        <button class="sim-control"
+                            onclick="cycleText('home-philo-card3', variations.homePhiloCard3)">↻</button>
+                    </p>
+                </div>
+                <!-- Card 3 -->
+                <div class="filosofia-card">
+                    <h3>Mente como Ferramenta</h3>
+                    <p>
+                        <span id="home-philo-card2" data-var="0">O objetivo não é esvaziar a mente, mas aprender a
+                            usá-la. Que ela não te domine, mas que você a use para o que importa.</span>
+                        <button class="sim-control"
+                            onclick="cycleText('home-philo-card2', variations.homePhiloCard2)">↻</button>
+                    </p>
+                </div>
+                <!-- Card 4 -->
+                <div class="filosofia-card">
+                    <h3>Corpo & Energia</h3>
+                    <p>
+                        <span id="home-philo-card4" data-var="0">Yôga não é só alongamento. É trabalhar corpo, mente e
+                            energia de forma integrada. Resultado: mais disposição, clareza e qualidade de vida.</span>
+                        <button class="sim-control"
+                            onclick="cycleText('home-philo-card4', variations.homePhiloCard4)">↻</button>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider" data-label="HOME: AULAS"></div>
+
+    <!-- 4. HOME: AULAS & SERVIÇOS -->
+    <section class="aulas">
+        <div class="aulas-container">
+            <h2 class="section-title">Aulas & Serviços</h2>
+            <div class="aulas-grid">
+                <!-- Card 1 -->
+                <div class="aula-card">
+                    <div class="aula-icon">🧘‍♂️</div>
+                    <h3>Aulas Particulares</h3>
+                    <p>
+                        <span id="home-classes-private" data-var="0">Presencial ou online. Evolua no seu ritmo, sem
+                            comparações. Foco total nos seus objetivos.</span>
+                        <button class="sim-control"
+                            onclick="cycleText('home-classes-private', variations.homeClassesPrivate)">↻</button>
+                    </p>
+                    <ul class="aula-features">
+                        <li>Atendimento personalizado</li>
+                        <li>Horários flexíveis</li>
+                        <li>Foco nos seus objetivos</li>
+                        <li>Porto Alegre ou online</li>
+                    </ul>
+                </div>
+                <!-- Card 2 -->
+                <div class="aula-card">
+                    <div class="aula-icon">👥</div>
+                    <h3>Aulas em Grupo</h3>
+                    <p>
+                        <span id="home-classes-group" data-var="0">Na Escola Humana Rio Branco. Turmas regulares,
+                            ambiente acolhedor e comunidade de praticantes.</span>
+                        <button class="sim-control"
+                            onclick="cycleText('home-classes-group', variations.homeClassesGroup)">↻</button>
+                    </p>
+                    <ul class="aula-features">
+                        <li>Segunda a sexta</li>
+                        <li>Turmas regulares</li>
+                        <li>Ambiente acolhedor</li>
+                        <li>Comunidade de praticantes</li>
+                    </ul>
+                </div>
+                <!-- Card 3 -->
+                <div class="aula-card highlight">
+                    <div class="aula-icon">📚</div>
+                    <h3>Workshops de Filosofia</h3>
+                    <p>
+                        <span id="home-classes-workshops" data-var="0">Aprofunde-se em mitologia, Samkhya e Tantra.
+                            Temas filosóficos com linguagem acessível e aplicação prática.</span>
+                        <button class="sim-control"
+                            onclick="cycleText('home-classes-workshops', variations.homeClassesWorkshops)">↻</button>
+                    </p>
+                    <ul class="aula-features">
+                        <li>Temas filosóficos</li>
+                        <li>Linguagem acessível</li>
+                        <li>Aplicação prática</li>
+                        <li>Cursos futuros online</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider" data-label="HOME: DEPOIMENTOS"></div>
+
+    <!-- 5. HOME: DEPOIMENTOS (NOVO) -->
+    <section class="depoimentos">
+        <div class="depoimentos-container">
+            <h2 class="section-title">
+                <span id="testimonials-title" data-var="0">O Que Meus Alunos Dizem</span>
+                <button class="sim-control"
+                    onclick="cycleText('testimonials-title', variations.testimonialsTitle)">↻</button>
+            </h2>
+            <p class="section-subtitle">
+                <span id="testimonials-subtitle" data-var="0">Transformações reais, de pessoas reais</span>
+                <button class="sim-control"
+                    onclick="cycleText('testimonials-subtitle', variations.testimonialsSubtitle)">↻</button>
+            </p>
+
+            <div class="depoimentos-grid">
+                <!-- Depoimento 1: Pedro M. -->
+                <div class="depoimento-card">
+                    <p class="depoimento-text">
+                        <span id="testimonials-card1-text" data-var="0">"Depois que comecei a praticar com o Luciano, me
+                            sinto mais disposto. Consigo fazer uma quantidade enorme de coisas e a energia parece que
+                            nunca acaba. Tenho certeza que tem totalmente a ver com a prática."</span>
+                        <button class="sim-control"
+                            onclick="cycleText('testimonials-card1-text', variations.testimonialsCard1Text)">↻</button>
+                    </p>
+                    <p class="depoimento-author">— Pedro M., praticante há 2 anos</p>
+                </div>
+
+                <!-- Depoimento 2: Pedro V. -->
+                <div class="depoimento-card">
+                    <p class="depoimento-text">
+                        <span id="testimonials-card2-text" data-var="0">"O Luciano tem um dom para explicar filosofia de
+                            um jeito que faz sentido. Não é aquele papo esotérico que a gente não entende. É prático, é
+                            real, e funciona no dia a dia."</span>
+                        <button class="sim-control"
+                            onclick="cycleText('testimonials-card2-text', variations.testimonialsCard2Text)">↻</button>
+                    </p>
+                    <p class="depoimento-author">— Pedro V., aluno da escola</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="divider" data-label="PÁGINA CONTATO: CTA"></div>
+
+    <!-- 7. PÁGINA CONTATO: CTA -->
+    <section class="contato-cta">
+        <div class="contato-container">
+            <h2>
+                <span id="contact-cta-title" data-var="0">Vamos Conversar?</span>
+                <button class="sim-control"
+                    onclick="cycleText('contact-cta-title', variations.contactCtaTitle)">↻</button>
+            </h2>
+            <p style="font-size: 1.2rem; margin-bottom: 2rem; color: rgba(255,255,255,0.9);">
+                <span id="contact-cta-text" data-var="0">Agende sua aula experimental ou tire suas dúvidas. Respondo
+                    pessoalmente no WhatsApp.</span>
+                <button class="sim-control"
+                    onclick="cycleText('contact-cta-text', variations.contactCtaText)">↻</button>
+            </p>
+            <a href="#" class="btn btn-primary" style="font-size: 1.2rem; padding: 1.2rem 3rem;">
+                <span id="contact-cta-btn" data-var="0">💬 Falar com Luciano no WhatsApp</span>
+                <button class="sim-control" onclick="cycleText('contact-cta-btn', variations.contactCtaBtn)">↻</button>
+            </a>
+
+            <div class="contato-info">
+                <div class="contato-item">
+                    <strong>📧 E-mail</strong>
+                    <p>luciano@giorgetta.com.br</p>
+                </div>
+                <div class="contato-item">
+                    <strong>📍 Localização</strong>
+                    <p>Porto Alegre, RS</p>
+                </div>
+                <div class="contato-item">
+                    <strong>📱 Instagram</strong>
+                    <p>@lucianogiorgetta</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer>
+        <p>&copy; 2025 Luciano Giorgetta | Instrutor de Yôga | Porto Alegre, RS</p>
+        <p style="margin-top: 0.5rem; font-size: 0.85rem;">
+            Yôga para corpos reais, filosofia para mentes livres.
+        </p>
+    </footer>
+
+    <script>
+        // DADOS DAS VARIAÇÕES
+        const variations = {
+            homeHeroTitle: [
+                "Energia que não acaba. Clareza que transforma.",
+                "Yôga sem misticismo. Resultados reais para sua vida.",
+                "Domine sua mente. Fortaleça seu corpo. Viva com propósito.",
+                "A filosofia milenar aplicada à vida moderna.",
+                "Mais do que posturas. Uma ferramenta de liberdade mental."
+            ],
+            homeHeroSubtitle: [
+                "Yôga e filosofia para quem busca qualidade de vida real, não promessas místicas.",
+                "Uma abordagem naturalista e direta para quem quer energia, foco e autoconhecimento.",
+                "Aprenda a usar sua mente como ferramenta e transforme sua rotina com a filosofia Samkhya.",
+                "Prática física intensa e filosofia profunda, traduzidas para a realidade do seu dia a dia.",
+                "Do caos da rotina à clareza da presença. Uma prática para pessoas reais, com vidas reais."
+            ],
+            homeHeroTagline: [
+                "\"Yôga para corpos reais, filosofia para mentes livres.\"",
+                "\"Liberdade, autoconhecimento e potência de vida.\"",
+                "\"Filosofia que funciona. Prática que transforma.\"",
+                "\"Sem dogmas. Apenas você e seu potencial.\"",
+                "\"O mapa para uma vida com mais energia e menos ansiedade.\""
+            ],
+            homeAboutTitle: [
+                "Do Caos à Quietude",
+                "Uma Jornada de Transformação",
+                "De Skatista e Tatuador a Instrutor",
+                "Minha Trajetória no Yôga",
+                "Quem é Luciano Giorgetta"
+            ],
+            homeAboutText: [
+                "A jornada de transformação através da prática. De skatista e tatuador a instrutor nível 3.",
+                "Encontrei no Yôga a energia que faltava no skate e a clareza que a arte exigia. Hoje, ensino o caminho que trilhei.",
+                "Não nasci em um ashram. Minha escola foi a vida, o skate e a tatuagem. O Yôga foi a chave que virou tudo.",
+                "13 anos de prática, 8 anos tatuando, 5 anos ensinando. Uma vida dedicada a entender como corpo e mente funcionam juntos.",
+                "Minha busca não foi por iluminação, foi por qualidade de vida. E foi exatamente isso que encontrei e que hoje ensino."
+            ],
+            // TIMELINE VARIATIONS
+            timelineTitle1: [
+                "O Primeiro Contato",
+                "O Início de Tudo",
+                "A Descoberta",
+                "Primeira Experiência",
+                "O Ponto de Virada"
+            ],
+            timelineText1: [
+                "Aos 15 anos, por indicação da mãe, experimentei a primeira aula de Yôga. Senti mais energia, disposição e rendimento no skate. Foi quando percebi: isso funciona de verdade.",
+                "Comecei aos 15 anos. O que era curiosidade virou rotina quando percebi que meu skate e minha disposição melhoraram absurdamente.",
+                "Fui para a primeira aula sem pretensão. Saí de lá com uma sensação de energia que nunca tinha sentido. Ali, aos 15 anos, algo mudou.",
+                "O skate exigia corpo, o Yôga me deu a base. Aos 15 anos, descobri que a prática não era só relaxamento, era potência.",
+                "Minha mãe insistiu, eu fui. E que bom que fui. Aos 15 anos, descobri uma fonte de energia que mudou meu jogo no esporte e na vida."
+            ],
+            timelineTitle2: [
+                "Tatuador & Praticante",
+                "Arte & Disciplina",
+                "Vida Dupla",
+                "Aprofundamento",
+                "O Caminho da Arte"
+            ],
+            timelineText2: [
+                "Durante 8 anos, trabalhei como tatuador profissional (estilo oriental/japonês) enquanto praticava Yôga. A filosofia começou a fazer cada vez mais sentido.",
+                "Por 8 anos, minha vida foi tatuagem e Yôga. A disciplina do traço oriental se uniu à filosofia do autoconhecimento.",
+                "Tatuava o dia todo, praticava sempre que podia. O estilo japonês e o Samkhya têm algo em comum: a busca pela essência.",
+                "Enquanto marcava peles, o Yôga marcava minha mente. 8 anos conciliando a arte da tatuagem com o estudo profundo da filosofia.",
+                "Vivi o mundo da tatuagem intensamente. Mas foi no tapete de Yôga que encontrei as respostas que a arte visual não me dava."
+            ],
+            timelineTitle3: [
+                "Instrutor de Yôga",
+                "A Transição",
+                "Nova Missão",
+                "Compartilhando o Mapa",
+                "O Chamado"
+            ],
+            timelineText3: [
+                "Transição de carreira. Queria transmitir o que estava vivendo: melhora na qualidade de vida, clareza mental, energia constante. Hoje sou Nível 3 pela Humana.",
+                "Decidi ensinar o que me transformou. Deixei o estúdio para me dedicar 100% a transmitir essa tecnologia de vida.",
+                "Não dava mais para guardar só para mim. Virei instrutor para mostrar que qualidade de vida é uma conquista real e acessível.",
+                "A tatuagem ficou na pele, o Yôga virou profissão. Hoje, como Nível 3, guio outros na busca por clareza e força.",
+                "Troquei a máquina pela voz. Minha missão agora é ensinar como ter a mesma energia e foco que o Yôga me proporcionou."
+            ],
+            homePhiloTitle: [
+                "Filosofia Acessível",
+                "Samkhya & Tantra Descomplicados",
+                "O Que Ensino",
+                "Uma Visão Naturalista",
+                "Fundamentos da Prática"
+            ],
+            homePhiloCard1: [
+                "Trabalho com a linhagem Samkhya Tantra: naturalista, não místico, focado em liberdade e autoconhecimento.",
+                "Uma filosofia matriarcal e sensorial. Valorizamos a liberdade e a experiência direta, sem dogmas ou repressão.",
+                "Baseado no Samkhya (teoria) e Tantra (prática). Uma abordagem que vê o mundo como ele é, sem fugas da realidade.",
+                "Ensinamentos antigos para problemas modernos. Foco na expansão da consciência e na liberdade individual.",
+                "Nada de religião. Samkhya e Tantra são ciências sobre a natureza humana e como viver melhor nela."
+            ],
+            homePhiloCard2: [
+                "O objetivo não é esvaziar a mente, mas aprender a usá-la. Que ela não te domine, mas que você a use para o que importa.",
+                "Sua mente é um supercomputador. O Yôga é o manual de instruções para você assumir o comando.",
+                "Pare de lutar contra seus pensamentos. Aprenda a gerenciá-los e direcione sua energia para seus objetivos.",
+                "Samkhya ensina a observar a mente. Quando você observa, você deixa de ser escravo das suas emoções.",
+                "Autoconhecimento prático. Entenda seus gatilhos, controle sua ansiedade e ganhe foco absoluto."
+            ],
+            homePhiloCard3: [
+                "Consigo transmitir conceitos complexos de forma acessível. Filosofia profunda, mas sem complicação. Para pessoas reais, com vidas reais.",
+                "Traduzo o sânscrito para o \"gauchês\". Filosofia densa explicada de um jeito que você entende e aplica na hora.",
+                "Sem \"gratiluz\" vazio. Ensino a técnica e a teoria com pés no chão, para quem tem boletos e responsabilidades.",
+                "A profundidade do Yôga sem a barreira da linguagem difícil. Conhecimento feito para ser usado, não apenas admirado.",
+                "Desmistifico o Yôga. Mostro como conceitos milenares são, na verdade, ferramentas lógicas para resolver problemas atuais."
+            ],
+            homePhiloCard4: [
+                "Yôga não é só alongamento. É trabalhar corpo, mente e energia de forma integrada. Resultado: mais disposição, clareza e qualidade de vida.",
+                "Muito além da flexibilidade. É sobre construir um corpo forte e uma bateria que não vicia. Energia vital para o dia todo.",
+                "O asana (postura) é a chave para acessar sua energia. Destrave seu corpo e sinta sua disposição mudar radicalmente.",
+                "Conecte a força física com a clareza mental. Uma prática que recarrega você de verdade, em vez de apenas cansar.",
+                "Não é ginástica, é biohacking ancestral. Use o corpo para modular sua energia e hackear seu estado mental."
+            ],
+            homeClassesPrivate: [
+                "Presencial ou online. Evolua no seu ritmo, sem comparações. Foco total nos seus objetivos.",
+                "Atendimento exclusivo para quem busca evolução rápida e personalizada. No seu tempo, do seu jeito.",
+                "Uma prática desenhada para o seu corpo e sua rotina. Acelere seus resultados com atenção 100% dedicada.",
+                "Mentoria individual em Yôga. Corrija detalhes, aprofunde a filosofia e transforme sua prática.",
+                "O caminho mais direto para a evolução. Aulas adaptadas às suas necessidades, seja presencial ou via Zoom."
+            ],
+            homeClassesGroup: [
+                "Na Escola Humana Rio Branco. Turmas regulares, ambiente acolhedor e comunidade de praticantes.",
+                "Pratique com a energia do grupo na Escola Humana. Um espaço de troca, aprendizado e evolução coletiva.",
+                "Junte-se à nossa comunidade na Ramiro Barcelos. Aulas dinâmicas em um ambiente preparado para o Yôga.",
+                "A força da egrégora. Práticas regulares em grupo para manter a disciplina e a motivação em alta.",
+                "Venha conhecer a Escola Humana. Turmas de segunda a sexta para você encaixar o Yôga na sua rotina."
+            ],
+            homeClassesWorkshops: [
+                "Aprofunde-se em mitologia, Samkhya e Tantra. Temas filosóficos com linguagem acessível e aplicação prática.",
+                "Mergulhe na teoria que sustenta a prática. Workshops temáticos para quem quer entender o \"porquê\" de tudo.",
+                "Estudos aprofundados sem academicismo chato. Mitologia e filosofia explicadas para transformar sua visão de mundo.",
+                "Para quem quer ir além do tapete. Descubra a riqueza do Samkhya e do Tantra em encontros focados e dinâmicos.",
+                "Expanda sua consciência. Cursos e workshops que conectam a sabedoria antiga com os desafios da vida moderna."
+            ],
+            // TESTIMONIALS VARIATIONS
+            testimonialsTitle: [
+                "O Que Meus Alunos Dizem",
+                "Histórias de Transformação",
+                "Resultados Reais",
+                "A Voz de Quem Pratica",
+                "Experiências Compartilhadas"
+            ],
+            testimonialsSubtitle: [
+                "Transformações reais, de pessoas reais",
+                "Relatos sinceros de quem vive o Yôga no dia a dia.",
+                "Não acredite apenas em mim. Veja o impacto na vida deles.",
+                "Pessoas comuns, resultados extraordinários.",
+                "O impacto prático da filosofia e do corpo em movimento."
+            ],
+            testimonialsCard1Text: [
+                "\"Depois que comecei a praticar com o Luciano, me sinto mais disposto. Consigo fazer uma quantidade enorme de coisas e a energia parece que nunca acaba. Tenho certeza que tem totalmente a ver com a prática.\"",
+                "\"Minha produtividade dobrou. Antes eu chegava no fim do dia exausto, hoje tenho energia de sobra. O método do Luciano virou a chave da minha disposição.\"",
+                "\"Eu achava que Yôga era só relaxar, mas com o Luciano descobri uma fonte de energia absurda. Faço muito mais coisas no meu dia e sem cansaço mental.\"",
+                "\"A prática me deu um gás que eu não tinha nem aos 20 anos. É impressionante como o corpo responde quando a gente trabalha a energia do jeito certo.\"",
+                "\"Sinto que meu dia rende 30 horas. A clareza e a vitalidade que ganhei com as aulas são impagáveis. Recomendo para todo mundo que quer performance.\""
+            ],
+            testimonialsCard2Text: [
+                "\"O Luciano tem um dom para explicar filosofia de um jeito que faz sentido. Não é aquele papo esotérico que a gente não entende. É prático, é real, e funciona no dia a dia.\"",
+                "\"Sempre tive pé atrás com papo místico, mas o Luciano é diferente. Ele traz a filosofia para o chão, para a realidade. Uso os conceitos dele no meu trabalho e nas relações.\"",
+                "\"A didática dele é incrível. Conceitos complexos viram ferramentas simples para lidar com o estresse e a ansiedade. É filosofia para usar na segunda-feira de manhã.\"",
+                "\"O que mais gosto é a honestidade. Sem promessas mágicas, só técnica e conhecimento que funcionam. Mudei minha forma de encarar os problemas.\"",
+                "\"Finalmente entendi o que é Yôga de verdade. Não é sobre fugir do mundo, é sobre viver melhor nele. O Luciano traduz isso com maestria.\""
+            ],
+            aboutHeroTitle: [
+                "Minha História",
+                "Quem Sou Eu",
+                "O Caminho Até Aqui",
+                "Por Trás do Instrutor",
+                "Trajetória Real"
+            ],
+            aboutHeroText: [
+                "Do caos da agulha à quietude do asana. Uma jornada de transformação real.",
+                "Como o skate e a tatuagem me prepararam para ser instrutor de Yôga.",
+                "Uma vida movida pela busca de liberdade e autoconhecimento.",
+                "Não sou guru. Sou um praticante que decidiu compartilhar o que aprendeu.",
+                "A história de como troquei a máquina de tatuar pelo tapete de Yôga."
+            ],
+            aboutTransitionText: [
+                "Chegou um momento em que tatuar já não fazia mais sentido. Eu queria transmitir o que estava vivendo: essa melhora na qualidade de vida.",
+                "A tatuagem é arte na pele, o Yôga é arte na vida. Percebi que podia impactar as pessoas de uma forma muito mais profunda e duradoura.",
+                "Deixei uma carreira sólida de 8 anos porque encontrei algo que fazia meu coração vibrar mais alto: ver a transformação nos olhos dos alunos.",
+                "O estúdio de tatuagem me ensinou disciplina e estética. O Yôga me deu propósito. A transição foi natural, um chamado para servir.",
+                "Troquei a dor da agulha pelo suor da prática. Queria ajudar as pessoas a se sentirem bem em seus próprios corpos, assim como eu me sentia."
+            ],
+            contactCtaTitle: [
+                "Vamos Conversar?",
+                "Comece Sua Transformação",
+                "Agende Sua Aula",
+                "Tire Suas Dúvidas",
+                "Fale Comigo"
+            ],
+            contactCtaText: [
+                "Agende sua aula experimental ou tire suas dúvidas. Respondo pessoalmente no WhatsApp.",
+                "O primeiro passo para uma vida com mais energia é mandar um \"oi\". Estou te esperando no WhatsApp.",
+                "Sem robôs, sem burocracia. Me chama no Whats e vamos ver qual o melhor formato para você.",
+                "Quer saber se o Yôga é para você? Vamos bater um papo. Terei prazer em explicar como funciona.",
+                "Não deixe para depois a qualidade de vida que você pode ter hoje. Clique abaixo e fale direto comigo."
+            ],
+            contactCtaBtn: [
+                "💬 Falar com Luciano no WhatsApp",
+                "Agendar Aula Experimental",
+                "Quero Mais Energia",
+                "Iniciar Conversa",
+                "Chamar no Whats"
+            ]
+        };
+
+        // FUNÇÃO DE TROCA
+        function cycleText(elementId, optionsArray) {
+            const element = document.getElementById(elementId);
+            let currentVar = parseInt(element.getAttribute('data-var'));
+
+            // Próxima variação
+            let nextVar = (currentVar + 1) % optionsArray.length;
+
+            // Atualiza texto e atributo
+            element.innerText = optionsArray[nextVar];
+            element.setAttribute('data-var', nextVar);
+        }
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,748 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manual de Identidade Visual | Luciano Giorgetta</title>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700&family=Inter:wght@400;500;600&family=Montserrat:wght@400;600&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            line-height: 1.6;
+            color: #2C3E50;
+            background: linear-gradient(135deg, #1A3A52 0%, #D4AF37 100%);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            background: #F8F9FA;
+            box-shadow: 0 10px 50px rgba(212, 175, 55, 0.3);
+        }
+
+        .page {
+            page-break-after: always;
+            margin-bottom: 60px;
+        }
+
+        .page:last-child {
+            page-break-after: avoid;
+        }
+
+        h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: #1A3A52;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: #1A3A52;
+            margin: 40px 0 20px;
+            border-left: 5px solid #D4AF37;
+            padding-left: 15px;
+        }
+
+        h3 {
+            font-family: 'Montserrat', sans-serif;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #2C3E50;
+            margin: 30px 0 15px;
+        }
+
+        .color-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .color-card {
+            background: white;
+            padding: 25px;
+            border-radius: 16px;
+            text-align: center;
+            border: 2px solid #E5E7EB;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .color-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 24px rgba(26, 58, 82, 0.2);
+        }
+
+        .color-swatch {
+            width: 100%;
+            height: 120px;
+            border-radius: 12px;
+            margin-bottom: 15px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+        }
+
+        .color-code {
+            font-family: 'Fira Code', monospace;
+            font-size: 0.85rem;
+            color: #6B7280;
+        }
+
+        .logo-examples {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .logo-card {
+            background: white;
+            padding: 35px;
+            border-radius: 16px;
+            text-align: center;
+            border: 2px solid #E5E7EB;
+        }
+
+        .wrong-examples {
+            background: linear-gradient(135deg, #FEE2E2, #FECACA);
+            padding: 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border-left: 5px solid #DC2626;
+        }
+
+        .correct-examples {
+            background: linear-gradient(135deg, #D1FAE5, #A7F3D0);
+            padding: 25px;
+            border-radius: 12px;
+            margin: 20px 0;
+            border-left: 5px solid #059669;
+        }
+
+        .grid-2 {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 25px;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        .mb-20 {
+            margin-bottom: 20px;
+        }
+
+        .mb-30 {
+            margin-bottom: 30px;
+        }
+
+        .mt-40 {
+            margin-top: 40px;
+        }
+
+        .bg-dark {
+            background: linear-gradient(135deg, #1A3A52, #0F2537);
+            color: white;
+            padding: 40px;
+            border-radius: 16px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .bg-gold {
+            background: linear-gradient(135deg, #D4AF37, #F4D03F);
+            color: #1A3A52;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(212, 175, 55, 0.3);
+        }
+
+        .accent-bar {
+            height: 12px;
+            background: linear-gradient(90deg, #1A3A52 0%, #D4AF37 50%, #1A3A52 100%);
+            margin: 40px 0;
+            border-radius: 6px;
+        }
+
+        .philosophy-quote {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.3rem;
+            color: #1A3A52;
+            text-align: center;
+            padding: 30px;
+            background: white;
+            border-left: 4px solid #D4AF37;
+            border-radius: 8px;
+            margin: 30px 0;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- Capa -->
+        <div class="page text-center">
+            <div class="accent-bar"></div>
+            <h1 style="font-size: 4rem; margin-top: 60px;">Manual de Identidade Visual</h1>
+            <div class="mt-40">
+                <div
+                    style="font-size: 5rem; margin-bottom: 20px; font-family: 'Playfair Display', serif; color: #1A3A52;">
+                    Luciano <span style="color: #D4AF37;">Giorgetta</span>
+                </div>
+                <p style="font-size: 1.8rem; color: #6B7280; font-weight: 500; font-style: italic;">Instrutor de Y�ga
+                </p>
+                <div class="philosophy-quote" style="margin-top: 50px;">
+                    "Y�ga para corpos reais, filosofia para mentes livres."
+                </div>
+                <div style="display: flex; justify-content: center; gap: 20px; margin-top: 50px;">
+                    <div
+                        style="width: 70px; height: 70px; background: #1A3A52; border-radius: 50%; box-shadow: 0 4px 12px rgba(26, 58, 82, 0.5);">
+                    </div>
+                    <div
+                        style="width: 70px; height: 70px; background: #D4AF37; border-radius: 50%; box-shadow: 0 4px 12px rgba(212, 175, 55, 0.5);">
+                    </div>
+                    <div
+                        style="width: 70px; height: 70px; background: #F8F9FA; border: 3px solid #1A3A52; border-radius: 50%; box-shadow: 0 4px 12px rgba(26, 58, 82, 0.3);">
+                    </div>
+                </div>
+            </div>
+            <div class="accent-bar" style="margin-top: 80px;"></div>
+        </div>
+
+        <!-- Introdução -->
+        <div class="page">
+            <h2>Introdução</h2>
+            <p class="mb-20">Este manual apresenta as diretrizes para aplicação correta da identidade visual da marca
+                <strong>Luciano Giorgetta</strong>. Seguindo estas orientações, você garantirá a consistência e força da
+                marca em todos os materiais.</p>
+
+            <h3>O que você encontrará neste manual:</h3>
+            <ul style="margin-left: 20px; margin-top: 15px; line-height: 2;">
+                <li><strong>Conceito</strong> - A filosofia por trás da marca</li>
+                <li><strong>Cores</strong> - Paleta oficial com códigos</li>
+                <li><strong>Tipografia</strong> - Fontes oficiais</li>
+                <li><strong>Logotipo</strong> - Versões e usos corretos</li>
+                <li><strong>Fotografia</strong> - Estilo visual</li>
+                <li><strong>Aplicações</strong> - Exemplos práticos</li>
+            </ul>
+
+            <div class="bg-gold mt-40">
+                <h3 style="color: #1A3A52; margin-top: 0;">Essência da Marca</h3>
+                <p style="font-size: 1.1rem;"><strong>"Do caos à quietude: transformação através da prática."</strong>
+                </p>
+                <p>Luciano Giorgetta é uma marca pessoal que combina <strong>profundidade filosófica</strong> com
+                    <strong>didática acessível</strong>, quebrando o estereótipo do "yogi místico" e posicionando-se
+                    como um guia experiente e humano.</p>
+            </div>
+        </div>
+
+        <!-- Conceito -->
+        <div class="page">
+            <div class="accent-bar"></div>
+            <h2>1. Conceito da Marca</h2>
+
+            <h3>Arquétipo: O Guia Experiente</h3>
+            <div class="grid-2">
+                <div class="correct-examples">
+                    <h4>🧘‍♂️ Autêntico, não Místico</h4>
+                    <p>Pessoa real que buscou qualidade de vida e agora compartilha o caminho. Tatuado, skatista,
+                        ex-tatuador. "Gente como a gente".</p>
+                </div>
+                <div class="correct-examples">
+                    <h4>📚 Filosófico, não Dogmático</h4>
+                    <p>Interesse profundo em Tantra/Samkhya, mas traduz conceitos complexos de forma acessível.
+                        Liberdade, não repressão.</p>
+                </div>
+            </div>
+
+            <h3>Posicionamento</h3>
+            <div class="philosophy-quote">
+                "Não sou um guru inalcançável. Sou alguém que já trilhou o caminho e agora ensina o mapa."
+            </div>
+
+            <h3>Diferencial Visual</h3>
+            <ul style="margin-left: 20px; margin-top: 15px; line-height: 2;">
+                <li><strong>Tatuagens:</strong> Corpo completamente tatuado (estilo oriental/japonês) - elemento visual
+                    distintivo que quebra estereótipos</li>
+                <li><strong>Contraste:</strong> Do "caos da agulha" (tatuagem) à "quietude do asana" (Y�ga)</li>
+                <li><strong>Acessibilidade:</strong> Y�ga para quem não se vê representado no Y�ga tradicional</li>
+            </ul>
+
+            <h3>Valores da Marca</h3>
+            <div class="grid-3">
+                <div class="logo-card">
+                    <h4 style="color: #D4AF37;">⚡ Energia</h4>
+                    <p>"Energia que não acaba" - Disposição, vitalidade, transformação real</p>
+                </div>
+                <div class="logo-card">
+                    <h4 style="color: #D4AF37;">🧠 Clareza</h4>
+                    <p>"Clareza mental" - Lucidez, autoconhecimento, domínio da mente</p>
+                </div>
+                <div class="logo-card">
+                    <h4 style="color: #D4AF37;">🕊️ Liberdade</h4>
+                    <p>"Mentes livres" - Filosofia sem repressão, individualidade, autenticidade</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Cores -->
+        <div class="page">
+            <div class="accent-bar"></div>
+            <h2>2. Paleta de Cores "Clássico Elegante"</h2>
+            <p style="font-size: 1.1rem; margin-bottom: 30px;">Paleta que transmite seriedade profissional (Azul
+                Marinho) com toques de lucidez e autoconhecimento (Dourado), criando um visual sofisticado e acessível.
+            </p>
+
+            <h3>Hierarquia de Cores</h3>
+            <div class="color-grid">
+                <!-- 1º - NAVY BLUE -->
+                <div class="color-card" style="border: 3px solid #1A3A52;">
+                    <div
+                        style="background: #1A3A52; color: white; padding: 8px; border-radius: 6px; font-weight: bold; margin-bottom: 12px;">
+                        1º PRINCIPAL</div>
+                    <div class="color-swatch" style="background: #1A3A52;"></div>
+                    <h4 style="color: #1A3A52; font-size: 1.2rem;">Navy Blue</h4>
+                    <div class="color-code" style="font-weight: bold;">#1A3A52</div>
+                    <div class="color-code">RGB: 26, 58, 82</div>
+                    <p style="font-size: 0.85rem; color: #333; margin-top: 10px; font-weight: 500;">Cor principal da
+                        marca</p>
+                    <p style="font-size: 0.8rem; color: #666; margin-top: 5px;"><strong>Uso:</strong> Fundos,
+                        estruturas, navegação. Autoridade e confiança.</p>
+                </div>
+
+                <!-- 2º - GOLD -->
+                <div class="color-card" style="border: 3px solid #D4AF37;">
+                    <div
+                        style="background: #D4AF37; color: #1A3A52; padding: 8px; border-radius: 6px; font-weight: bold; margin-bottom: 12px;">
+                        2º DESTAQUE</div>
+                    <div class="color-swatch" style="background: #D4AF37;"></div>
+                    <h4 style="color: #D4AF37; font-size: 1.2rem;">Gold</h4>
+                    <div class="color-code" style="font-weight: bold;">#D4AF37</div>
+                    <div class="color-code">RGB: 212, 175, 55</div>
+                    <p style="font-size: 0.85rem; color: #333; margin-top: 10px; font-weight: 500;">Lucidez e clareza
+                    </p>
+                    <p style="font-size: 0.8rem; color: #666; margin-top: 5px;"><strong>Uso:</strong> CTAs, destaques,
+                        elementos importantes. Autoconhecimento.</p>
+                </div>
+
+                <!-- 3º - OFF-WHITE -->
+                <div class="color-card" style="border: 3px solid #F8F9FA;">
+                    <div
+                        style="background: #6B7280; color: white; padding: 8px; border-radius: 6px; font-weight: bold; margin-bottom: 12px;">
+                        3º FUNDO</div>
+                    <div class="color-swatch" style="background: #F8F9FA; border: 1px solid #E5E7EB;"></div>
+                    <h4 style="color: #6B7280; font-size: 1.2rem;">Off-White</h4>
+                    <div class="color-code" style="font-weight: bold;">#F8F9FA</div>
+                    <div class="color-code">RGB: 248, 249, 250</div>
+                    <p style="font-size: 0.85rem; color: #333; margin-top: 10px; font-weight: 500;">Base limpa</p>
+                    <p style="font-size: 0.8rem; color: #666; margin-top: 5px;"><strong>Uso:</strong> Fundos principais.
+                        Minimalismo e clareza.</p>
+                </div>
+
+                <!-- 4º - CHARCOAL -->
+                <div class="color-card" style="border: 3px solid #2C3E50;">
+                    <div
+                        style="background: #2C3E50; color: white; padding: 8px; border-radius: 6px; font-weight: bold; margin-bottom: 12px;">
+                        4º TEXTO</div>
+                    <div class="color-swatch" style="background: #2C3E50;"></div>
+                    <h4 style="color: #2C3E50; font-size: 1.2rem;">Charcoal</h4>
+                    <div class="color-code" style="font-weight: bold;">#2C3E50</div>
+                    <div class="color-code">RGB: 44, 62, 80</div>
+                    <p style="font-size: 0.85rem; color: #333; margin-top: 10px; font-weight: 500;">Texto principal</p>
+                    <p style="font-size: 0.8rem; color: #666; margin-top: 5px;"><strong>Uso:</strong> Textos,
+                        parágrafos. Legibilidade máxima.</p>
+                </div>
+            </div>
+
+            <h3>Combinações de Cores - Exemplos Práticos</h3>
+            <div class="grid-3" style="margin: 30px 0;">
+                <!-- Combinação Principal -->
+                <div
+                    style="background: linear-gradient(135deg, #1A3A52, #0F2537); padding: 40px; border-radius: 16px; text-align: center; color: white;">
+                    <h4 style="color: white; margin-bottom: 15px;">Combinação Principal</h4>
+                    <div style="font-size: 2.5rem; font-weight: 700; font-family: 'Playfair Display', serif;">
+                        Luciano <span style="color: #D4AF37;">Giorgetta</span>
+                    </div>
+                    <p style="font-size: 0.9rem; margin-top: 10px;">Navy + Gold<br>Máximo impacto e elegância</p>
+                </div>
+
+                <!-- Combinação Suave -->
+                <div
+                    style="background: linear-gradient(135deg, #F8F9FA, #FFFFFF); padding: 40px; border-radius: 16px; text-align: center; border: 2px solid #E5E7EB;">
+                    <h4 style="color: #2C3E50; margin-bottom: 15px;">Combinação Suave</h4>
+                    <div
+                        style="font-size: 2.5rem; font-weight: 700; font-family: 'Playfair Display', serif; color: #1A3A52;">
+                        Luciano <span style="color: #D4AF37;">Giorgetta</span>
+                    </div>
+                    <p style="font-size: 0.9rem; margin-top: 10px; color: #6B7280;">Off-White + Navy<br>Minimalismo e
+                        clareza</p>
+                </div>
+
+                <!-- Combinação Destaque -->
+                <div
+                    style="background: linear-gradient(135deg, #D4AF37, #F4D03F); padding: 40px; border-radius: 16px; text-align: center; color: #1A3A52;">
+                    <h4 style="color: #1A3A52; margin-bottom: 15px;">Combinação Destaque</h4>
+                    <div style="font-size: 2.5rem; font-weight: 700; font-family: 'Playfair Display', serif;">
+                        Luciano <span style="color: white;">Giorgetta</span>
+                    </div>
+                    <p style="font-size: 0.9rem; margin-top: 10px;">Gold + White<br>Elementos especiais</p>
+                </div>
+            </div>
+
+            <h3>Demonstração de Uso em Interface</h3>
+            <div style="background: #1A3A52; padding: 40px; border-radius: 16px; margin: 30px 0;">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 30px;">
+                    <div style="font-size: 2rem; color: white; font-family: 'Playfair Display', serif;">
+                        Luciano <span style="color: #D4AF37;">Giorgetta</span>
+                    </div>
+                    <div style="display: flex; gap: 15px;">
+                        <button
+                            style="background: #D4AF37; color: #1A3A52; border: none; padding: 14px 28px; border-radius: 8px; font-weight: 600; cursor: pointer; font-family: 'Montserrat', sans-serif;">Agendar
+                            Aula</button>
+                        <button
+                            style="background: transparent; color: #F8F9FA; border: 2px solid #F8F9FA; padding: 14px 28px; border-radius: 8px; font-weight: 600; cursor: pointer; font-family: 'Montserrat', sans-serif;">Saiba
+                            Mais</button>
+                    </div>
+                </div>
+                <div
+                    style="background: linear-gradient(135deg, rgba(212, 175, 55, 0.2), rgba(212, 175, 55, 0.05)); padding: 30px; border-radius: 12px; color: white; border: 1px solid rgba(212, 175, 55, 0.3);">
+                    <h4
+                        style="color: #D4AF37; font-size: 1.8rem; margin-bottom: 15px; font-family: 'Playfair Display', serif;">
+                        Energia que não acaba. Clareza que transforma.</h4>
+                    <p style="font-size: 1.1rem; opacity: 0.9;">Y�ga e filosofia para quem busca qualidade de vida real,
+                        não promessas místicas.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tipografia -->
+        <div class="page">
+            <div class="accent-bar"></div>
+            <h2>3. Tipografia "Clássico Elegante"</h2>
+            <p>Sistema tipográfico que equilibra sofisticação editorial (serifas) com legibilidade moderna (sans-serif).
+            </p>
+
+            <h3>Fonte Primária - Playfair Display (Títulos)</h3>
+            <div
+                style="background: white; padding: 35px; border-radius: 16px; margin: 20px 0; border: 2px solid #E5E7EB;">
+                <div
+                    style="font-family: 'Playfair Display', serif; font-size: 3rem; font-weight: 700; margin-bottom: 15px; color: #1A3A52;">
+                    Luciano Giorgetta</div>
+                <div
+                    style="font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 600; margin-bottom: 10px; color: #2C3E50;">
+                    Títulos e Headlines</div>
+                <div
+                    style="font-family: 'Playfair Display', serif; font-size: 1.2rem; font-weight: 400; font-style: italic; color: #6B7280;">
+                    Citações filosóficas em itálico</div>
+                <p style="margin-top: 20px; font-size: 0.9rem; color: #6B7280; font-family: 'Inter', sans-serif;">
+                    <strong>Justificativa:</strong> Fonte serifada clássica que transmite sofisticação, profundidade e
+                    tradição. Perfeita para criar o ar "editorial" e "filosófico".</p>
+            </div>
+
+            <h3>Fonte Secundária - Montserrat (Subtítulos)</h3>
+            <div
+                style="background: white; padding: 35px; border-radius: 16px; margin: 20px 0; border: 2px solid #E5E7EB;">
+                <div
+                    style="font-family: 'Montserrat', sans-serif; font-size: 2rem; font-weight: 600; margin-bottom: 15px; color: #1A3A52;">
+                    LUCIANO Giorgetta</div>
+                <div
+                    style="font-family: 'Montserrat', sans-serif; font-size: 1.2rem; font-weight: 600; margin-bottom: 10px; color: #2C3E50;">
+                    Subtítulos e Destaques</div>
+                <div style="font-family: 'Montserrat', sans-serif; font-size: 1rem; font-weight: 400; color: #6B7280;">
+                    Elementos de navegação</div>
+                <p style="margin-top: 20px; font-size: 0.9rem; color: #6B7280; font-family: 'Inter', sans-serif;">
+                    <strong>Justificativa:</strong> Sans-serif geométrica e moderna. Cria contraste com Playfair e
+                    garante legibilidade em elementos de UI.</p>
+            </div>
+
+            <h3>Fonte Terciária - Inter (Corpo de Texto)</h3>
+            <div
+                style="background: white; padding: 35px; border-radius: 16px; margin: 20px 0; border: 2px solid #E5E7EB;">
+                <div
+                    style="font-family: 'Inter', sans-serif; font-size: 1.8rem; font-weight: 600; margin-bottom: 15px; color: #1A3A52;">
+                    Luciano Giorgetta</div>
+                <div
+                    style="font-family: 'Inter', sans-serif; font-size: 1.1rem; font-weight: 500; margin-bottom: 10px; color: #2C3E50;">
+                    Parágrafos e descrições</div>
+                <div
+                    style="font-family: 'Inter', sans-serif; font-size: 1rem; font-weight: 400; color: #6B7280; line-height: 1.8;">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praticante de Y�ga há 13 anos, instrutor há
+                    5 anos. Especialista em filosofia Tantra/Samkhya com didática acessível.</div>
+                <p style="margin-top: 20px; font-size: 0.9rem; color: #6B7280;"><strong>Justificativa:</strong>
+                    Projetada para interfaces. Oferece clareza excepcional e é neutra, permitindo foco no conteúdo.</p>
+            </div>
+
+            <h3>Hierarquia Tipográfica</h3>
+            <div style="background: #F8F9FA; padding: 30px; border-radius: 12px; margin: 20px 0;">
+                <div
+                    style="font-family: 'Playfair Display', serif; font-size: 2.5rem; font-weight: 700; color: #1A3A52; margin-bottom: 10px;">
+                    H1 - Playfair Display Bold (40px)</div>
+                <div
+                    style="font-family: 'Playfair Display', serif; font-size: 2rem; font-weight: 600; color: #2C3E50; margin-bottom: 10px;">
+                    H2 - Playfair Display SemiBold (32px)</div>
+                <div
+                    style="font-family: 'Montserrat', sans-serif; font-size: 1.5rem; font-weight: 600; color: #2C3E50; margin-bottom: 10px;">
+                    H3 - Montserrat SemiBold (24px)</div>
+                <div
+                    style="font-family: 'Inter', sans-serif; font-size: 1.1rem; font-weight: 400; color: #2C3E50; line-height: 1.8;">
+                    Corpo - Inter Regular (18px) - Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praticante
+                    de Y�ga há 13 anos.</div>
+            </div>
+        </div>
+
+        <!-- Logotipo -->
+        <div class="page">
+            <div class="accent-bar"></div>
+            <h2>4. Logotipo</h2>
+
+            <h3>Logotipo Primário (Wordmark)</h3>
+            <div
+                style="background: white; padding: 50px; border-radius: 16px; text-align: center; margin: 20px 0; border: 2px solid #E5E7EB;">
+                <div style="font-size: 4rem; font-weight: 700; color: #1A3A52; font-family: 'Playfair Display', serif;">
+                    Luciano <span style="color: #D4AF37;">Giorgetta</span>
+                </div>
+                <p style="margin-top: 15px; color: #6B7280; font-style: italic;">Instrutor de Y�ga</p>
+            </div>
+
+            <h3>Símbolo (Ícone)</h3>
+            <div
+                style="background: white; padding: 50px; border-radius: 16px; text-align: center; margin: 20px 0; border: 2px solid #E5E7EB;">
+                <div
+                    style="width: 100px; height: 100px; background: #1A3A52; border-radius: 50%; margin: 0 auto 15px; position: relative; box-shadow: 0 8px 16px rgba(26, 58, 82, 0.3);">
+                    <div
+                        style="width: 50px; height: 50px; background: #D4AF37; border-radius: 50%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                    </div>
+                </div>
+                <p style="color: #6B7280;">Círculo Navy (estabilidade) + Círculo Gold (lucidez)</p>
+                <p style="color: #6B7280; font-size: 0.9rem; margin-top: 10px;">Representa o equilíbrio entre corpo
+                    (azul) e mente (dourado)</p>
+            </div>
+
+            <h3>Versões do Logotipo</h3>
+            <div class="logo-examples">
+                <div class="logo-card">
+                    <div
+                        style="font-size: 2rem; color: #1A3A52; margin-bottom: 15px; display: flex; align-items: center; justify-content: center; font-family: 'Playfair Display', serif;">
+                        <div
+                            style="width: 40px; height: 40px; background: #1A3A52; border-radius: 50%; margin-right: 15px;">
+                        </div>
+                        Luciano <span style="color: #D4AF37; margin-left: 8px;">Giorgetta</span>
+                    </div>
+                    <h4>Assinatura Horizontal</h4>
+                    <p>Uso principal</p>
+                </div>
+                <div class="logo-card">
+                    <div
+                        style="font-size: 1.8rem; color: #1A3A52; text-align: center; font-family: 'Playfair Display', serif;">
+                        <div
+                            style="width: 35px; height: 35px; background: #1A3A52; border-radius: 50%; margin: 0 auto 10px;">
+                        </div>
+                        Luciano<br><span style="color: #D4AF37;">Giorgetta</span>
+                    </div>
+                    <h4>Assinatura Vertical</h4>
+                    <p>Espaços verticais</p>
+                </div>
+                <div class="logo-card">
+                    <div
+                        style="width: 60px; height: 60px; background: #1A3A52; border-radius: 50%; margin: 0 auto 15px; position: relative;">
+                        <div
+                            style="width: 30px; height: 30px; background: #D4AF37; border-radius: 50%; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);">
+                        </div>
+                    </div>
+                    <h4>Apenas Símbolo</h4>
+                    <p>Favicon, redes sociais</p>
+                </div>
+            </div>
+
+            <h3>Versões Monocromáticas</h3>
+            <div class="grid-2">
+                <div class="logo-card">
+                    <div
+                        style="font-size: 1.8rem; color: #000; margin-bottom: 15px; font-family: 'Playfair Display', serif;">
+                        Luciano Giorgetta
+                    </div>
+                    <h4>Versão Preto</h4>
+                </div>
+                <div class="logo-card bg-dark">
+                    <div
+                        style="font-size: 1.8rem; color: #fff; margin-bottom: 15px; font-family: 'Playfair Display', serif;">
+                        Luciano Giorgetta
+                    </div>
+                    <h4 style="color: #fff;">Versão Branco</h4>
+                </div>
+            </div>
+
+            <h3>Usos Incorretos</h3>
+            <div class="wrong-examples">
+                <h4 style="color: #DC2626;">❌ NÃO FAZER:</h4>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>Não distorcer ou esticar o logotipo</li>
+                    <li>Não usar cores fora da paleta oficial</li>
+                    <li>Não aplicar sombras ou efeitos 3D</li>
+                    <li>Não colocar sobre fundos que prejudiquem a legibilidade</li>
+                    <li>Não separar "Luciano" de "Giorgetta" em contextos diferentes</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Fotografia -->
+        <div class="page">
+            <div class="accent-bar"></div>
+            <h2>5. Estilo Fotográfico</h2>
+
+            <h3>Diretrizes Gerais</h3>
+            <div class="grid-2">
+                <div class="correct-examples">
+                    <h4>✅ Preto e Branco para Prática</h4>
+                    <p>Fotos de asanas em P&B criam visual sofisticado e artístico, destacando forma e movimento sem
+                        brigar com as cores do site.</p>
+                </div>
+                <div class="correct-examples">
+                    <h4>✅ Coloridas para Conexão</h4>
+                    <p>Fotos casuais (workshops, alunos, hobbies) em cores para mostrar o lado humano e acessível.</p>
+                </div>
+            </div>
+
+            <h3>Tipos de Fotos</h3>
+            <div class="grid-3">
+                <div class="logo-card">
+                    <h4>Hero (Principal)</h4>
+                    <p>Foto P&B em asana avançada. Fundo neutro. Tatuagens viram arte.</p>
+                </div>
+                <div class="logo-card">
+                    <h4>Sobre (Humano)</h4>
+                    <p>Foto colorida casual. Pode incluir skate ou elementos pessoais.</p>
+                </div>
+                <div class="logo-card">
+                    <h4>Galeria (Mix)</h4>
+                    <p>Combinação de P&B (práticas) + Coloridas (eventos).</p>
+                </div>
+            </div>
+
+            <div class="wrong-examples">
+                <h4 style="color: #DC2626;">❌ EVITAR:</h4>
+                <ul style="margin-left: 20px; margin-top: 10px;">
+                    <li>Fotos genéricas de banco de imagens</li>
+                    <li>Filtros excessivos ou psicodélicos</li>
+                    <li>Fundos poluídos ou distrações visuais</li>
+                    <li>Poses forçadas ou não autênticas</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Aplicações -->
+        <div class="page">
+            <div class="accent-bar"></div>
+            <h2>6. Aplicações Práticas</h2>
+
+            <h3>Cartão de Visita</h3>
+            <div class="grid-2">
+                <div class="logo-card">
+                    <h4>Frente</h4>
+                    <div
+                        style="background: #1A3A52; color: white; padding: 30px; border-radius: 12px; text-align: center;">
+                        <div
+                            style="font-family: 'Playfair Display', serif; font-size: 1.5rem; font-weight: 700; margin-bottom: 10px;">
+                            Luciano <span style="color: #D4AF37;">Giorgetta</span>
+                        </div>
+                        <p style="font-size: 0.9rem; margin-bottom: 15px; font-style: italic;">Instrutor de Y�ga</p>
+                        <div
+                            style="width: 30px; height: 30px; background: #D4AF37; border-radius: 50%; margin: 0 auto;">
+                        </div>
+                    </div>
+                </div>
+                <div class="logo-card">
+                    <h4>Verso</h4>
+                    <div style="background: white; border: 2px solid #1A3A52; padding: 30px; border-radius: 12px;">
+                        <p style="font-size: 0.85rem; color: #2C3E50; margin-bottom: 8px;">📞 (51) 99999-9999</p>
+                        <p style="font-size: 0.85rem; color: #2C3E50; margin-bottom: 8px;">📧 luciano@Giorgetta.com.br</p>
+                        <p style="font-size: 0.85rem; color: #2C3E50; margin-bottom: 8px;">🌐 lucianoGiorgetta.com.br</p>
+                        <p style="font-size: 0.85rem; color: #2C3E50;">📍 Porto Alegre, RS</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3>Assinatura de Email</h3>
+            <div
+                style="border: 2px solid #E5E7EB; padding: 25px; border-radius: 12px; background: white; margin: 20px 0;">
+                <div
+                    style="font-family: 'Playfair Display', serif; font-size: 1.3rem; font-weight: 600; color: #1A3A52; margin-bottom: 5px;">
+                    Luciano <span style="color: #D4AF37;">Giorgetta</span>
+                </div>
+                <p style="font-size: 0.9rem; color: #6B7280; margin-bottom: 10px; font-style: italic;">Instrutor de Y�ga
+                    | Nível 3 Humana</p>
+                <p style="font-size: 0.85rem; color: #2C3E50;">📞 (51) 99999-9999 | 📧 luciano@Giorgetta.com.br</p>
+                <p style="font-size: 0.85rem; color: #2C3E50;">🌐 lucianoGiorgetta.com.br</p>
+            </div>
+        </div>
+
+        <!-- Personalidade -->
+        <div class="page">
+            <div class="accent-bar"></div>
+            <h2>7. Tom de Voz e Personalidade</h2>
+
+            <div class="philosophy-quote">
+                "Não sou um guru inalcançável. Sou alguém que já trilhou o caminho e agora ensina o mapa."
+            </div>
+
+            <h3>Traços de Personalidade</h3>
+            <div class="grid-2">
+                <div class="correct-examples">
+                    <h4>🧘‍♂️ Autêntico, não Místico</h4>
+                    <p>Compartilha experiências reais, não promessas místicas. "Gente como a gente".</p>
+                </div>
+                <div class="correct-examples">
+                    <h4>📚 Profundo, não Complicado</h4>
+                    <p>Traduz filosofia complexa de forma acessível. Didática clara.</p>
+                </div>
+                <div class="correct-examples">
+                    <h4>💪 Sério, não Rígido</h4>
+                    <p>Profissional mas acessível. Informal mas respeitoso.</p>
+                </div>
+                <div class="correct-examples">
+                    <h4>🕊️ Libertador, não Dogmático</h4>
+                    <p>Foco em liberdade e individualidade, não em regras rígidas.</p>
+                </div>
+            </div>
+
+            <h3>Exemplos de Comunicação</h3>
+            <div
+                style="background: white; padding: 30px; border-radius: 12px; margin: 20px 0; border-left: 4px solid #D4AF37;">
+                <h4 style="color: #1A3A52; margin-bottom: 15px;">✅ BOM:</h4>
+                <p style="font-style: italic; color: #2C3E50; line-height: 1.8;">"Comecei Y�ga aos 15 anos porque minha
+                    mãe insistiu. Na primeira aula, senti mais energia e disposição. Oito anos depois, virei instrutor
+                    porque queria compartilhar essa transformação."</p>
+            </div>
+
+            <div
+                style="background: #FEE2E2; padding: 30px; border-radius: 12px; margin: 20px 0; border-left: 4px solid #DC2626;">
+                <h4 style="color: #DC2626; margin-bottom: 15px;">❌ RUIM:</h4>
+                <p style="font-style: italic; color: #2C3E50; line-height: 1.8;">"Através da prática milenar do Y�ga,
+                    você alcançará a iluminação espiritual e se conectará com o universo cósmico."</p>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>

@@ -1,6 +1,9 @@
+import type { Metadata } from 'next';
+import Image from 'next/image';
+import Link from 'next/link';
 import { unstable_setRequestLocale } from 'next-intl/server';
 import { siteConfig } from '@/site.config';
-import { ContactForm } from '@/components/ContactForm';
+import { getWhatsAppUrl } from '@/lib/contact';
 
 type Props = {
   params: Promise<{
@@ -8,125 +11,137 @@ type Props = {
   }>;
 };
 
+export const metadata: Metadata = {
+  title: 'Contato | Dra. Luiza Stoduto',
+  description: 'Entre em contato com a Dra. Luiza Stoduto no Medplex Santana, Porto Alegre.',
+};
+
 export default async function ContatoPage({ params }: Props) {
   const { locale } = await params;
   unstable_setRequestLocale(locale);
-  const contact = siteConfig.contact;
-  const whatsappUrl = `https://wa.me/${contact.phone.whatsapp}?text=${encodeURIComponent(contact.phone.whatsappMessage)}`;
+
+  const whatsappUrl = getWhatsAppUrl();
+  const mapsLink = 'https://maps.google.com/?q=Medplex+Santana+Porto+Alegre';
 
   return (
     <>
-      <section className="hero-interno">
-        <h1>Vamos Conversar?</h1>
-        <p>Agende sua aula experimental ou tire suas dúvidas. Respondo pessoalmente.</p>
-      </section>
-
-      <div className="contato-page-grid">
-        <div className="contato-info">
-          <h2>Como Posso Te Ajudar?</h2>
-          <p>
-            Se você está buscando mais energia, clareza mental, ou simplesmente quer entender
-            como o Yôga pode transformar sua qualidade de vida, estou aqui para conversar.
+      <section className="lace-tile bg-[var(--areia)] py-20">
+        <div className="section-shell text-center">
+          <p className="section-eyebrow">Contato e localização</p>
+          <h1 className="section-title mt-2 text-5xl sm:text-6xl">Vamos agendar sua avaliação?</h1>
+          <p className="mx-auto mt-4 max-w-3xl text-[#43545d]">
+            Atendimento no Medplex Santana, em Porto Alegre. Entre em contato para encaixes, urgências e avaliação
+            personalizada.
           </p>
-          <p>
-            Atendo em Porto Alegre (presencial) e online. Aulas particulares, em grupo,
-            ou workshops de filosofia. Escolha o formato que funciona para você.
-          </p>
-
-          <div className="contact-methods">
-            <div className="contact-card">
-              <h3>💬 WhatsApp (Principal)</h3>
-              <p>
-                Essa é a forma mais rápida de falar comigo.
-                Respondo pessoalmente, sem robôs.
-              </p>
-              <a href={whatsappUrl} target="_blank" rel="noopener noreferrer">
-                Abrir WhatsApp →
-              </a>
-            </div>
-
-            <div className="contact-card">
-              <h3>📧 E-mail</h3>
-              <p>
-                Para propostas de parcerias, Yôga corporativo ou dúvidas mais detalhadas.
-              </p>
-              <a href={`mailto:${contact.email.primary}`}>
-                {contact.email.primary}
-              </a>
-            </div>
-
-            <div className="contact-card">
-              <h3>📱 Instagram</h3>
-              <p>
-                Acompanhe dicas de prática, filosofia e bastidores das aulas.
-              </p>
-              <a href={siteConfig.social.instagram} target="_blank" rel="noopener noreferrer">
-                @lucianogiorgetta →
-              </a>
-            </div>
-          </div>
-        </div>
-
-        <div className="cta-box">
-          <h3>Aula Experimental</h3>
-          <p>
-            Experimente uma aula sem compromisso.
-            Vamos conversar sobre seus objetivos e ver se faz sentido para você.
-          </p>
-          <a href={whatsappUrl} className="btn btn-primary">
-            Agendar Agora
-          </a>
-          <p style={{ marginTop: '2rem', fontSize: '0.9rem', color: 'rgba(255, 255, 255, 0.7)' }}>
-            Presencial em Porto Alegre ou Online
-          </p>
-        </div>
-      </div>
-
-      <section className="localizacao">
-        <div className="localizacao-container">
-          <h2>Onde Atendo</h2>
-          <div className="local-grid">
-            <div className="local-card">
-              <h3>🏫 Escola Umana Rio Branco</h3>
-              <p>
-                <strong>Endereço:</strong> Rua Ramiro Barcelos, 1800<br />
-                Porto Alegre, RS
-              </p>
-              <p style={{ marginTop: '1rem' }}>
-                <strong>Horários:</strong> Segunda a Sexta<br />
-                (Consultar horários disponíveis)
-              </p>
-            </div>
-
-            <div className="local-card">
-              <h3>🏠 Aulas Particulares</h3>
-              <p>
-                <strong>Presencial:</strong> Vou até você em Porto Alegre<br />
-                (Bairros: Moinhos, Bom Fim, Petrópolis, etc.)
-              </p>
-              <p style={{ marginTop: '1rem' }}>
-                <strong>Online:</strong> De qualquer lugar<br />
-                (Zoom, Google Meet)
-              </p>
-            </div>
-          </div>
         </div>
       </section>
 
-      <section className="bg-white py-16 form-section">
-        <div className="mx-auto max-w-2xl px-4 sm:px-8">
-          <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold text-[#0F2537] mb-4">
-              Envie Sua Mensagem
-            </h2>
-            <p className="text-gray-600">
-              Preencha o formulário abaixo e entrarei em contato em breve.
+      <section className="lazy-section bg-white py-16">
+        <div className="section-shell grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+          <article className="rounded-2xl border border-[#d8e5ec] bg-[var(--areia)] p-5">
+            <h2 className="font-[var(--font-display)] text-3xl text-[var(--azul-profundo)]">Endereco</h2>
+            <p className="mt-2 text-sm text-[#43545d]">
+              {siteConfig.contact.address.street}
+              <br />
+              {siteConfig.contact.address.complement}
+              <br />
+              {siteConfig.contact.address.neighborhood} - {siteConfig.contact.address.city}/{siteConfig.contact.address.state}
             </p>
+          </article>
+
+          <article className="rounded-2xl border border-[#d8e5ec] bg-[var(--areia)] p-5">
+            <h2 className="font-[var(--font-display)] text-3xl text-[var(--azul-profundo)]">WhatsApp</h2>
+            <p className="mt-2 text-sm text-[#43545d]">{siteConfig.contact.phone.primary}</p>
+            <Link
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-flex text-sm font-semibold text-[var(--azul-profundo)] hover:text-[var(--azul-praia)]"
+            >
+              Abrir conversa
+            </Link>
+          </article>
+
+          <article className="rounded-2xl border border-[#d8e5ec] bg-[var(--areia)] p-5">
+            <h2 className="font-[var(--font-display)] text-3xl text-[var(--azul-profundo)]">Instagram</h2>
+            <p className="mt-2 text-sm text-[#43545d]">@luiza.dentista</p>
+            <Link
+              href={siteConfig.social.instagram}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="mt-4 inline-flex text-sm font-semibold text-[var(--azul-profundo)] hover:text-[var(--azul-praia)]"
+            >
+              Ver perfil
+            </Link>
+          </article>
+
+          <article className="rounded-2xl border border-[#d8e5ec] bg-[var(--areia)] p-5">
+            <h2 className="font-[var(--font-display)] text-3xl text-[var(--azul-profundo)]">Horario</h2>
+            <p className="mt-2 text-sm text-[#43545d]">
+              {siteConfig.contact.businessHours.days}
+              <br />
+              {siteConfig.contact.businessHours.hours}
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section className="lazy-section bg-white pb-16">
+        <div className="section-shell grid gap-8 lg:grid-cols-[1fr_1.1fr]">
+          <div className="overflow-hidden rounded-[1.6rem] border border-[#d9e6ee]">
+            <Image
+              src="/images/luiza/predio-medplex.webp"
+              alt="Prédio do Medplex Santana"
+              width={1280}
+              height={800}
+              loading="lazy"
+              decoding="async"
+              className="h-full min-h-[350px] w-full object-cover"
+            />
           </div>
-          <ContactForm />
+
+          <div className="space-y-4 rounded-[1.6rem] border border-[#d9e6ee] bg-[var(--areia)] p-6">
+            <h2 className="section-title text-4xl">Como chegar</h2>
+            <ul className="space-y-2 text-sm text-[#42535d]">
+              {siteConfig.location.directions.map((item) => (
+                <li key={item} className="rounded-xl bg-white px-4 py-3">
+                  {item}
+                </li>
+              ))}
+            </ul>
+            <div className="flex flex-wrap gap-3 pt-2">
+              <Link
+                href={mapsLink}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="cta-button inline-flex items-center rounded-full border border-[#9ec8db] bg-white px-5 py-2.5 text-sm font-semibold text-[var(--azul-profundo)]"
+              >
+                Abrir no Google Maps
+              </Link>
+              <Link
+                href={whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="cta-button cta-pulse inline-flex items-center rounded-full bg-[var(--azul-profundo)] px-5 py-2.5 text-sm font-semibold text-white"
+              >
+                Agendar agora
+              </Link>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="lazy-section bg-white pb-20">
+        <div className="section-shell">
+          <iframe
+            src={siteConfig.location.mapEmbedUrl}
+            className="map-embed border border-[#d6e3eb] bg-white"
+            loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title="Mapa Medplex Santana"
+          />
         </div>
       </section>
     </>
   );
 }
-

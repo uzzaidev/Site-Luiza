@@ -1,411 +1,180 @@
-/**
- * CONFIGURAÇÃO CENTRAL DO SITE - Luciano Giorgetta
- * Instrutor de Yôga em Porto Alegre
- */
-
 export const siteConfig = {
-  // ===========================================
-  // 1. IDENTIDADE DA EMPRESA
-  // ===========================================
-
   identity: {
-    name: "Luciano Giorgetta",
-    legalName: "Luciano Giorgetta",
-    taxId: "",
-    tagline: "Yôga para corpos reais, filosofia para mentes livres.",
-    description: "Yôga e filosofia para quem busca qualidade de vida real, não promessas místicas. Aulas particulares e em grupo em Porto Alegre.",
-    foundedYear: 2021,
-    anniversary: "01-01",
+    name: 'Dra. Luiza Stoduto',
+    legalName: 'Stoduto Odontologia',
+    cro: 'CRO/RS 33802',
+    tagline: 'Entre risadas e sorrisos',
+    description:
+      'Odontologia humanizada em Porto Alegre com foco em clareza, cuidado e tratamentos completos para toda a família.',
   },
-
-  // ===========================================
-  // 2. URLS E DOMÍNIOS
-  // ===========================================
 
   urls: {
-    production: "https://lucianogiorgetta.com.br",
-    staging: "",
-    basePath: "/",
+    production: 'https://stodutoodontologia.com.br',
+    staging: '',
+    basePath: '/',
   },
-
-  // ===========================================
-  // 3. CONTATO
-  // ===========================================
 
   contact: {
     email: {
-      primary: "luciano@giorgetta.com.br",
-      secondary: "",
+      primary: 'contato@stodutoodontologia.com.br',
+      secondary: '',
     },
     phone: {
-      primary: "+55 51 9826-1301",
-      whatsapp: "555198261301",
-      whatsappMessage: "Olá Luciano! Vim pelo site e gostaria de agendar uma aula experimental!",
+      primary: '+55 51 9531-3066',
+      whatsapp: '555195313066',
+      whatsappMessage:
+        'Olá, Dra. Luiza! Vim pelo site e gostaria de agendar uma avaliação odontológica.',
     },
     address: {
       hasPhysicalAddress: true,
-      street: "Rua Ramiro Barcelos, 1800",
-      complement: "Escola Umana Rio Branco",
-      neighborhood: "",
-      city: "Porto Alegre",
-      state: "RS",
-      zipCode: "",
-      country: "Brasil",
-      coordinates: {
-        lat: 0,
-        lng: 0,
-      },
+      street: 'Rua Gomes Jardim, 201',
+      complement: 'Medplex Santana',
+      neighborhood: 'Santana',
+      city: 'Porto Alegre',
+      state: 'RS',
+      zipCode: '90620-130',
+      country: 'Brasil',
     },
     businessHours: {
-      days: "Segunda a Sexta",
-      hours: "Consultar horários disponíveis",
-      timezone: "America/Sao_Paulo",
+      days: 'Segunda a Sexta',
+      hours: 'Horário comercial',
+      timezone: 'America/Sao_Paulo',
     },
   },
 
-  // ===========================================
-  // 4. REDES SOCIAIS
-  // ===========================================
-
   social: {
-    instagram: "https://instagram.com/lucianogiorgetta",
-    linkedin: "",
-    facebook: "",
-    youtube: "",
-    tiktok: "",
-    twitter: "",
-    github: "",
+    instagram: 'https://instagram.com/luiza.dentista',
+    linkedin: '',
+    facebook: '',
+    youtube: '',
+    tiktok: '',
+    twitter: '',
+    github: '',
   },
-
-  // ===========================================
-  // 5. NAVEGAÇÃO
-  // ===========================================
 
   navigation: {
     main: [
-      { label: "Início", href: "/" },
-      { label: "Sobre", href: "/sobre" },
-      { label: "Aulas", href: "/#aulas" },
-      { label: "Filosofia", href: "/#filosofia" },
-      { label: "Blog", href: "/blog" },
-      { label: "Contato", href: "/contato" },
+      { label: 'Início', href: '/' },
+      { label: 'Sobre', href: '/sobre' },
+      { label: 'Serviços', href: '/servicos' },
+      { label: 'Contato', href: '/contato' },
     ],
     cta: {
-      text: "Agendar Aula Experimental",
-      href: "/contato",
+      text: 'Agendar Consulta',
+      href: '/contato',
     },
     footer: {
-      solutions: [
-        { label: "Aulas Particulares", href: "/#aulas" },
-        { label: "Aulas em Grupo", href: "/#aulas" },
-        { label: "Workshops de Filosofia", href: "/#aulas" },
+      quickLinks: [
+        { label: 'Início', href: '/' },
+        { label: 'Sobre', href: '/sobre' },
+        { label: 'Serviços', href: '/servicos' },
+        { label: 'Contato', href: '/contato' },
       ],
-      company: [
-        { label: "Sobre", href: "/sobre" },
-        { label: "Filosofia", href: "/#filosofia" },
-        { label: "Blog", href: "/blog" },
-      ],
-      legal: [],
     },
   },
-
-  // ===========================================
-  // 6. HERO (SEÇÃO PRINCIPAL DA HOME)
-  // ===========================================
 
   hero: {
-    title: "Energia que não acaba.",
-    subtitle: "Clareza que transforma.",
-    description: {
-      lead: "Yôga e filosofia para quem busca",
-      highlight: "qualidade de vida real",
-      end: ", não promessas místicas.",
+    eyebrow: 'CRO/RS 33802 · Medplex Santana, Porto Alegre',
+    title: 'Entre risadas e sorrisos',
+    subtitle:
+      'Odontologia humanizada com leveza, carinho e transparência em cada atendimento.',
+    ctaPrimary: {
+      text: 'Agendar pelo WhatsApp',
+      href: '/contato',
     },
-    cta: {
-      primary: {
-        text: "Agendar Aula Experimental",
-        href: "/contato",
-      },
-      secondary: {
-        text: "Conhecer a Filosofia",
-        href: "/#filosofia",
-      },
+    ctaSecondary: {
+      text: 'Conhecer Serviços',
+      href: '/servicos',
     },
-    video: {
-      enabled: false,
-      src: "/videos/hero.mp4",
-      poster: "/images/hero-bg.jpg",
-    },
+    badges: ['Formada pela UFRGS', 'Clínico Geral', 'Atende todas as idades'],
   },
-
-  // ===========================================
-  // 7. SOBRE A EMPRESA
-  // ===========================================
 
   about: {
+    preview:
+      'Sou a Dra. Luiza Stoduto, formada pela UFRGS. Escolhi a odontologia pelo amor genuíno em cuidar de pessoas e oferecer atendimento sem susto, sem pressa e com explicação clara.',
     story: [
-      "Aos 15 anos, por indicação da mãe, experimentei a primeira aula de Yôga. Senti mais energia, disposição e rendimento no skate. Foi quando percebi: isso funciona de verdade.",
-      "Durante 8 anos, trabalhei como tatuador profissional (estilo oriental/japonês) enquanto praticava Yôga. A filosofia começou a fazer cada vez mais sentido.",
-      "Em 2021, fiz a transição de carreira. Virei instrutor de Yôga. Hoje sou Nível 3 pela Humana, o nível mais alto de certificação. Ministro aulas particulares, em grupo, workshops de filosofia. Já atendi mais de 200 alunos, dei mais de 1000 práticas.",
+      'Sempre soube que queria trabalhar com pessoas. A odontologia entrou na minha vida como um encontro natural entre técnica, cuidado e proximidade.',
+      'No consultório, explico cada passo do tratamento para que você entenda o que está acontecendo e se sinta segura em cada decisão.',
+      'Meu foco é unir resultado clínico, conforto e acolhimento para que seu sorriso seja tratado com respeito e leveza.',
     ],
-    mission: "Transmitir o que estou vivendo: melhora na qualidade de vida, clareza mental, energia constante. Para pessoas reais, com vidas reais.",
-    vision: "Ser referência em Yôga acessível, quebrando estereótipos e mostrando que a prática é para todos.",
-    values: [
+    pillars: [
       {
-        title: "AUTENTICIDADE",
-        description: "Não finjo ser quem não sou. Sou tatuado, gosto de skate, tenho uma história real. Yôga não é sobre perfeição, é sobre transformação.",
-        icon: "User",
+        title: 'Transparência',
+        description: 'Cada procedimento é explicado com linguagem clara e simples.',
       },
       {
-        title: "FILOSOFIA ACESSÍVEL",
-        description: "Samkhya e Tantra são profundos, mas não precisam ser complicados. Traduzo conceitos complexos para uma linguagem que faz sentido.",
-        icon: "Book",
+        title: 'Leveza',
+        description: 'Atendimento acolhedor para reduzir medo e insegurança.',
       },
       {
-        title: "LIBERDADE",
-        description: "Yôga é sobre liberdade, não repressão. Sobre usar a mente como ferramenta, não ser dominado por ela. Sobre viver com energia e clareza.",
-        icon: "Zap",
+        title: 'Cuidado',
+        description: 'Plano individual para cada fase da sua saúde bucal.',
       },
-    ],
-    stats: [
-      { value: "13", label: "Anos de Prática" },
-      { value: "5", label: "Anos como Instrutor" },
-      { value: "200+", label: "Alunos Atendidos" },
-      { value: "1000+", label: "Práticas Ministradas" },
     ],
   },
 
-  // ===========================================
-  // 8. SERVIÇOS/PRODUTOS
-  // ===========================================
-
-  services: [
+  process: [
     {
-      id: "aulas-particulares",
-      icon: "🧘‍♂️",
-      title: "Aulas Particulares",
-      description: "Presencial ou online. Evolua no seu ritmo, sem comparações.",
-      features: [
-        "Atendimento personalizado",
-        "Horários flexíveis",
-        "Foco nos seus objetivos",
-        "Porto Alegre ou online",
-      ],
-      link: "/contato",
-      ctaText: "Agendar Aula",
+      title: 'Agendamento',
+      description: 'Contato rápido pelo WhatsApp.',
     },
     {
-      id: "aulas-grupo",
-      icon: "👥",
-      title: "Aulas em Grupo",
-      description: "Na Escola Umana Rio Branco (Ramiro 1800).",
-      features: [
-        "Segunda a sexta",
-        "Turmas regulares",
-        "Ambiente acolhedor",
-        "Comunidade de praticantes",
-      ],
-      link: "/contato",
-      ctaText: "Saiba Mais",
+      title: 'Avaliação',
+      description: 'Diagnóstico completo e escuta ativa.',
     },
     {
-      id: "workshops-filosofia",
-      icon: "📚",
-      title: "Workshops de Filosofia",
-      description: "Aprofunde-se em mitologia, Samkhya e Tantra.",
-      features: [
-        "Temas filosóficos",
-        "Linguagem acessível",
-        "Aplicação prática",
-        "Cursos futuros online",
-      ],
-      link: "/contato",
-      ctaText: "Ver Workshops",
+      title: 'Plano',
+      description: 'Tratamento claro, com etapas bem definidas.',
+    },
+    {
+      title: 'Execução',
+      description: 'Procedimentos com conforto e técnica.',
+    },
+    {
+      title: 'Acompanhamento',
+      description: 'Suporte contínuo para manutenção do resultado.',
     },
   ],
 
-  // ===========================================
-  // 9. EQUIPE
-  // ===========================================
+  credentials: [
+    {
+      title: 'UFRGS',
+      description: 'Cirurgiã-dentista com formação universitária sólida.',
+    },
+    {
+      title: 'CRO/RS 33802',
+      description: 'Registro ativo no Conselho Regional de Odontologia.',
+    },
+    {
+      title: 'Toxina Botulínica',
+      description: 'Habilitada para harmonização facial e controle de bruxismo.',
+    },
+    {
+      title: 'Medplex Santana',
+      description: 'Estrutura moderna em local de referência em Porto Alegre.',
+    },
+  ],
 
-  team: {
-    enabled: false,
-    members: [],
-  },
-
-  // ===========================================
-  // 10. PROJETOS/CASES
-  // ===========================================
-
-  projects: {
-    enabled: false,
-    items: [],
-  },
-
-  // ===========================================
-  // 11. DEPOIMENTOS
-  // ===========================================
-
-  testimonials: {
-    enabled: true,
-    items: [
-      {
-        name: "Pedro M.",
-        role: "Praticante",
-        company: "",
-        text: "Depois que comecei a praticar com o Luciano, me sinto mais disposto. Consigo fazer uma quantidade enorme de coisas e a energia parece que nunca acaba. Tenho certeza que tem totalmente a ver com a prática.",
-        avatar: "",
-        rating: 5,
-      },
-      {
-        name: "Mayra M.",
-        role: "Aluna",
-        company: "Escola Umana",
-        text: "O Luciano tem um dom para explicar filosofia de um jeito que faz sentido. Não é aquele papo esotérico que a gente não entende. É prático, é real, e funciona no dia a dia.",
-        avatar: "",
-        rating: 5,
-      },
+  location: {
+    shortLabel: 'Medplex Santana, Porto Alegre',
+    mapEmbedUrl:
+      'https://www.google.com/maps?q=Medplex+Santana+Porto+Alegre&output=embed',
+    directions: [
+      'Acesso fácil para quem vem da região central e da zona norte.',
+      'Há estacionamento no complexo Medplex.',
+      'Ponto de referência: esquina da Rua Gomes Jardim com Av. Ipiranga.',
     ],
   },
 
-  // ===========================================
-  // 12. FAQ (PERGUNTAS FREQUENTES)
-  // ===========================================
-
-  faq: {
-    enabled: false,
-    items: [],
-  },
-
-  // ===========================================
-  // 13. BLOG
-  // ===========================================
-
-  blog: {
-    enabled: true,
-    postsPerPage: 9,
-    categories: [
-      { slug: "filosofia", name: "Filosofia" },
-      { slug: "pratica", name: "Prática" },
-      { slug: "qualidade-de-vida", name: "Qualidade de Vida" },
-    ],
-  },
-
-  // ===========================================
-  // 14. FORMULÁRIO DE CONTATO
-  // ===========================================
-
-  contactForm: {
-    recipient: "luciano@giorgetta.com.br",
-    fields: {
-      name: { enabled: true, required: true },
-      email: { enabled: true, required: true },
-      phone: { enabled: true, required: false },
-      company: { enabled: false, required: false },
-      subject: { enabled: false, required: false },
-      message: { enabled: true, required: true },
-    },
-    dropdowns: {
-      source: {
-        enabled: false,
-        options: [],
-      },
-      service: {
-        enabled: false,
-        options: [],
-      },
-    },
-    messages: {
-      success: "Mensagem enviada com sucesso! Entrarei em contato em breve.",
-      error: "Erro ao enviar mensagem. Por favor, tente novamente ou entre em contato por WhatsApp.",
-    },
-  },
-
-  // ===========================================
-  // 15. INTEGRAÇÕES
-  // ===========================================
-
-  integrations: {
-    googleAnalytics: {
-      enabled: false,
-      measurementId: "",
-    },
-    googleTagManager: {
-      enabled: false,
-      containerId: "",
-    },
-    facebookPixel: {
-      enabled: false,
-      pixelId: "",
-    },
-    chat: {
-      enabled: false,
-      provider: "",
-      widgetId: "",
-    },
-    calendly: {
-      enabled: false,
-      url: "",
-    },
-  },
-
-  // ===========================================
-  // 16. SEO E METADATA
-  // ===========================================
-
-  seo: {
-    keywords: [
-      "yôga porto alegre",
-      "instrutor de yôga",
-      "aulas de yôga particulares",
-      "filosofia samkhya",
-      "filosofia tantra",
-      "yôga para iniciantes",
-      "qualidade de vida",
-    ],
-    author: "Luciano Giorgetta",
-    openGraph: {
-      image: "/images/og-image.jpg",
-      type: "website",
-      locale: "pt_BR",
-    },
-    twitter: {
-      card: "summary_large_image",
-      site: "",
-      creator: "",
-    },
-  },
-
-  // ===========================================
-  // 17. IDIOMAS (i18n)
-  // ===========================================
-
-  i18n: {
-    defaultLocale: "pt",
-    locales: ["pt"],
-    localeNames: {
-      pt: "Português",
-    },
-  },
-
-  // ===========================================
-  // 18. FEATURES/FUNCIONALIDADES
-  // ===========================================
-
-  features: {
-    newsletter: {
-      enabled: false,
-      provider: "",
-    },
-    darkMode: {
-      enabled: false,
-      defaultTheme: "light",
-    },
-    pwa: {
-      enabled: false,
-    },
-    cookieConsent: {
-      enabled: true,
+  branding: {
+    colors: {
+      areia: '#F7F3EE',
+      azulPraia: '#5BA8C4',
+      azulProfundo: '#2E7DA3',
+      azulClaro: '#A8D4E6',
+      madeira: '#C4A882',
+      verdeAgua: '#7EC8BE',
+      texto: '#2D3436',
     },
   },
 };

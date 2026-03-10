@@ -1,0 +1,721 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guia de Feedback — Dra. Luiza Stoduto</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,600;0,700;1,400&family=DM+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --azul:     #2E7DA3;
+            --azul-m:   #5BA8C4;
+            --azul-cl:  #D6EDF6;
+            --areia:    #F7F3EE;
+            --madeira:  #C4A882;
+            --mad-cl:   #EDE3D6;
+            --verde:    #7EC8BE;
+            --verd-cl:  #D4F0ED;
+            --texto:    #2D3436;
+            --suave:    #6B7280;
+            --borda:    #DDD5C8;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            font-family: 'DM Sans', sans-serif;
+            font-size: 11px;
+            color: var(--texto);
+            background: #E8E8E8;
+        }
+
+        /* ====== A4 PAGES ====== */
+        .page {
+            width: 210mm;
+            min-height: 297mm;
+            margin: 10mm auto;
+            background: var(--areia);
+            padding: 14mm 16mm 12mm;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.15);
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Corner decoration */
+        .page::before {
+            content: '';
+            position: absolute;
+            top: 0; right: 0;
+            width: 40mm; height: 40mm;
+            background: linear-gradient(225deg, var(--azul-cl) 0%, transparent 70%);
+        }
+        .page::after {
+            content: '';
+            position: absolute;
+            bottom: 0; left: 0;
+            width: 30mm; height: 30mm;
+            background: linear-gradient(45deg, var(--mad-cl) 0%, transparent 70%);
+        }
+
+        /* ====== HEADER ====== */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 10mm;
+            padding-bottom: 5mm;
+            border-bottom: 2px solid var(--azul-m);
+        }
+
+        .logo-text {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--azul);
+            line-height: 1.1;
+        }
+        .logo-text span { color: var(--azul-m); }
+        .logo-sub {
+            font-size: 9px;
+            color: var(--suave);
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            margin-top: 2px;
+        }
+
+        .header-right {
+            text-align: right;
+            font-size: 9px;
+            color: var(--suave);
+            line-height: 1.8;
+        }
+        .header-right strong { color: var(--azul); }
+
+        /* ====== SECTION TITLE ====== */
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin: 7mm 0 4mm;
+        }
+        .section-icon {
+            width: 26px; height: 26px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 13px;
+            flex-shrink: 0;
+        }
+        .icon-blue  { background: var(--azul);   color: white; }
+        .icon-sand  { background: var(--madeira); color: white; }
+        .icon-green { background: var(--verde);   color: white; }
+
+        .section-title h2 {
+            font-family: 'Cormorant Garamond', serif;
+            font-size: 17px;
+            font-weight: 700;
+            color: var(--azul);
+        }
+        .section-intro {
+            font-size: 10px;
+            color: var(--suave);
+            margin-bottom: 5mm;
+            line-height: 1.6;
+            padding-left: 34px;
+        }
+
+        /* ====== CHECKLIST ITEM ====== */
+        .checklist { display: flex; flex-direction: column; gap: 3mm; }
+
+        .item {
+            display: flex;
+            align-items: flex-start;
+            gap: 8px;
+            background: white;
+            border-radius: 8px;
+            padding: 8px 10px;
+            border: 1.5px solid var(--borda);
+            position: relative;
+        }
+        .item.priority-high  { border-left: 4px solid var(--azul); }
+        .item.priority-med   { border-left: 4px solid var(--madeira); }
+        .item.priority-opt   { border-left: 4px solid var(--verde); }
+
+        .checkbox {
+            width: 16px; height: 16px;
+            border: 2px solid var(--borda);
+            border-radius: 4px;
+            flex-shrink: 0;
+            margin-top: 1px;
+            background: white;
+        }
+
+        .item-content { flex: 1; }
+        .item-title {
+            font-weight: 600;
+            font-size: 11px;
+            color: var(--texto);
+            margin-bottom: 2px;
+        }
+        .item-desc {
+            font-size: 9.5px;
+            color: var(--suave);
+            line-height: 1.5;
+        }
+        .item-tip {
+            font-size: 9px;
+            color: var(--azul);
+            margin-top: 3px;
+            font-style: italic;
+        }
+
+        .badge-use {
+            font-size: 8px;
+            padding: 2px 7px;
+            border-radius: 10px;
+            white-space: nowrap;
+            flex-shrink: 0;
+            align-self: center;
+            font-weight: 600;
+        }
+        .use-hero    { background: var(--azul-cl); color: var(--azul); }
+        .use-sobre   { background: var(--mad-cl);  color: #7A5C3A; }
+        .use-local   { background: var(--verd-cl); color: #2A7A72; }
+        .use-geral   { background: #F3F0FF; color: #5B4BDB; }
+
+        /* ====== DECISION ITEM ====== */
+        .decision {
+            background: white;
+            border-radius: 8px;
+            border: 1.5px solid var(--borda);
+            padding: 8px 10px;
+            margin-bottom: 3mm;
+        }
+        .decision-header {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            margin-bottom: 5px;
+        }
+        .decision-num {
+            width: 20px; height: 20px;
+            background: var(--azul);
+            color: white;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 10px;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+        .decision-q {
+            font-weight: 600;
+            font-size: 11px;
+            color: var(--texto);
+        }
+
+        .options-row {
+            display: flex;
+            gap: 6px;
+            flex-wrap: wrap;
+            padding-left: 28px;
+        }
+        .option {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            background: var(--areia);
+            border: 1.5px solid var(--borda);
+            border-radius: 6px;
+            padding: 4px 9px;
+            font-size: 10px;
+            cursor: pointer;
+        }
+        .option-radio {
+            width: 12px; height: 12px;
+            border: 2px solid var(--borda);
+            border-radius: 50%;
+            flex-shrink: 0;
+            background: white;
+        }
+        .option-text { color: var(--texto); }
+
+        .text-field {
+            margin-left: 28px;
+            margin-top: 4px;
+            border: 0;
+            border-bottom: 1.5px dashed var(--borda);
+            width: calc(100% - 28px);
+            background: transparent;
+            font-size: 10px;
+            color: var(--texto);
+            padding: 2px 0;
+            outline: none;
+            font-family: 'DM Sans', sans-serif;
+        }
+
+        .decision-note {
+            margin-left: 28px;
+            margin-top: 4px;
+            font-size: 9px;
+            color: var(--suave);
+            font-style: italic;
+        }
+
+        /* ====== PALETTE PREVIEW (inline em decisao 1) ====== */
+        .palette-row {
+            display: flex;
+            gap: 5px;
+            padding-left: 28px;
+            margin-top: 5px;
+            align-items: center;
+        }
+        .swatch {
+            width: 22px; height: 22px;
+            border-radius: 50%;
+            border: 1.5px solid var(--borda);
+        }
+        .swatch-label {
+            font-size: 8.5px;
+            color: var(--suave);
+            margin-right: 8px;
+        }
+        .approve-btn {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            background: var(--areia);
+            border: 1.5px solid var(--borda);
+            border-radius: 6px;
+            padding: 4px 10px;
+            font-size: 10px;
+            margin-left: auto;
+            margin-right: 0;
+        }
+
+        /* ====== LEGEND ====== */
+        .legend {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 4mm;
+            flex-wrap: wrap;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 4px;
+            font-size: 9px;
+            color: var(--suave);
+        }
+        .legend-dot {
+            width: 10px; height: 18px;
+            border-radius: 3px;
+        }
+
+        /* ====== DIVIDER ====== */
+        .divider {
+            border: none;
+            border-top: 1.5px dashed var(--borda);
+            margin: 6mm 0;
+        }
+
+        /* ====== NEXT STEPS ====== */
+        .steps-row {
+            display: flex;
+            gap: 4mm;
+        }
+        .step-card {
+            flex: 1;
+            background: white;
+            border-radius: 8px;
+            border: 1.5px solid var(--borda);
+            padding: 8px;
+            text-align: center;
+        }
+        .step-num {
+            width: 22px; height: 22px;
+            border-radius: 50%;
+            background: var(--azul);
+            color: white;
+            font-weight: 700;
+            font-size: 11px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 5px;
+        }
+        .step-card h4 {
+            font-size: 10px;
+            color: var(--azul);
+            margin-bottom: 3px;
+            font-weight: 600;
+        }
+        .step-card p {
+            font-size: 9px;
+            color: var(--suave);
+            line-height: 1.5;
+        }
+
+        /* ====== FOOTER ====== */
+        .footer {
+            margin-top: auto;
+            padding-top: 5mm;
+            border-top: 1px solid var(--borda);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: absolute;
+            bottom: 10mm;
+            left: 16mm;
+            right: 16mm;
+        }
+        .footer p { font-size: 8.5px; color: var(--suave); }
+        .footer-brand {
+            font-size: 9px;
+            color: var(--azul);
+            font-weight: 600;
+        }
+
+        /* ====== PRINT MEDIA ====== */
+        @media print {
+            body { background: white; }
+            .page {
+                margin: 0;
+                box-shadow: none;
+                page-break-after: always;
+            }
+            .page:last-child { page-break-after: avoid; }
+        }
+
+        @page {
+            size: A4;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+
+<!-- ========================================
+     PÁGINA 1 — CHECKLIST DE FOTOS
+     ======================================== -->
+<div class="page">
+
+    <!-- Header -->
+    <div class="header">
+        <div>
+            <div class="logo-text">Dra. Luiza <span>Stoduto</span></div>
+            <div class="logo-sub">Cirurgiã-dentista · CRO/RS 33802</div>
+        </div>
+        <div class="header-right">
+            <div><strong>Guia de Feedback</strong></div>
+            <div>Site + Identidade Visual</div>
+            <div>Fevereiro 2025</div>
+        </div>
+    </div>
+
+    <!-- Intro -->
+    <p style="font-size: 10.5px; color: var(--suave); line-height: 1.7; margin-bottom: 2mm;">
+        Oi, Luiza! 👋 Preparei este guia para que você consiga me dar um feedback completo sobre o seu site.<br>
+        São dois passos simples: <strong style="color: var(--texto);">(1) reunir as fotos</strong> e
+        <strong style="color: var(--texto);">(2) responder as perguntas de decisão.</strong>
+        Nada técnico — só me conte o que você prefere!
+    </p>
+
+    <hr class="divider">
+
+    <!-- SEÇÃO 1: FOTOS -->
+    <div class="section-title">
+        <div class="section-icon icon-blue">📸</div>
+        <h2>Fotos que preciso de você</h2>
+    </div>
+
+    <!-- Legend -->
+    <div class="legend" style="padding-left: 34px;">
+        <div class="legend-item">
+            <div class="legend-dot" style="background: var(--azul);"></div>
+            <span>Essencial — sem ela o site não fica completo</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-dot" style="background: var(--madeira);"></div>
+            <span>Importante — melhora muito o resultado</span>
+        </div>
+        <div class="legend-item">
+            <div class="legend-dot" style="background: var(--verde);"></div>
+            <span>Opcional — adiciona quando tiver</span>
+        </div>
+    </div>
+
+    <div class="checklist">
+
+        <!-- FOTO 1 -->
+        <div class="item priority-high">
+            <div class="checkbox"></div>
+            <div class="item-content">
+                <div class="item-title">📍 Foto principal — você no consultório ou fundo neutro</div>
+                <div class="item-desc">A "foto estrela" do site. Aparece na primeira tela que o paciente vê. Precisa ser de boa qualidade, boa iluminação e com você sorrindo, de preferência com jaleco ou roupa profissional.</div>
+                <div class="item-tip">💡 Fundo branco, bege claro ou o próprio consultório (desfocado) ficam ótimos.</div>
+            </div>
+            <div class="badge-use use-hero">Hero</div>
+        </div>
+
+        <!-- FOTO 2 -->
+        <div class="item priority-high">
+            <div class="checkbox"></div>
+            <div class="item-content">
+                <div class="item-title">🤝 Foto de você mais casual / humanizada</div>
+                <div class="item-desc">Para a seção "Sobre mim". Pode ser um ângulo diferente da anterior, mais descontraído — mostrando sua personalidade leve e o sorriso genuíno que você tem.</div>
+                <div class="item-tip">💡 Pode ser tirada no mesmo dia da Foto 1 — só muda a pose ou expressão.</div>
+            </div>
+            <div class="badge-use use-sobre">Sobre</div>
+        </div>
+
+        <!-- FOTO 3 -->
+        <div class="item priority-high">
+            <div class="checkbox"></div>
+            <div class="item-content">
+                <div class="item-title">🏥 Consultório — interior da sala (Medplex Santana)</div>
+                <div class="item-desc">Foto do ambiente: cadeira odontológica, equipamentos, janela com vista, mesa de trabalho. Bem iluminada. Vai aparecer na seção "Diferenciais" e reforça o prestígio do endereço.</div>
+                <div class="item-tip">💡 A vista da janela do Medplex é um diferencial enorme — se der, capture ela!</div>
+            </div>
+            <div class="badge-use use-local">Consultório</div>
+        </div>
+
+        <!-- FOTO 4 -->
+        <div class="item priority-med">
+            <div class="checkbox"></div>
+            <div class="item-content">
+                <div class="item-title">🏢 Medplex Santana — fachada ou entrada</div>
+                <div class="item-desc">Uma foto da entrada ou fachada do Medplex. Ajuda o paciente a reconhecer o local antes de chegar e passa credibilidade pelo endereço premium.</div>
+                <div class="item-tip">💡 Pode ser foto do Google Maps ou que você tire na chegada ao trabalho.</div>
+            </div>
+            <div class="badge-use use-local">Localização</div>
+        </div>
+
+        <!-- FOTO 5 -->
+        <div class="item priority-med">
+            <div class="checkbox"></div>
+            <div class="item-content">
+                <div class="item-title">⚙️ Você em atendimento / procedimento</div>
+                <div class="item-desc">Foto fazendo um procedimento ou conversando com paciente (com autorização). Se não tiver paciente ainda, pode simular com colega. Aparece na seção de Diferenciais.</div>
+                <div class="item-tip">💡 Máscara + luva + viseira transmitem profissionalismo.</div>
+            </div>
+            <div class="badge-use use-geral">Diferencial</div>
+        </div>
+
+        <!-- FOTO 6 -->
+        <div class="item priority-opt">
+            <div class="checkbox"></div>
+            <div class="item-content">
+                <div class="item-title">✨ Resultado de tratamento — antes e depois (opcional)</div>
+                <div class="item-desc">Se tiver algum caso de clareamento ou faceta que possa compartilhar, ótimo! Mas só com autorização escrita do paciente, conforme o CRO.</div>
+                <div class="item-tip">💡 Não é obrigatório para o lançamento — adiciona depois quando tiver casos reais.</div>
+            </div>
+            <div class="badge-use use-geral">Serviços</div>
+        </div>
+
+    </div>
+
+    <!-- Foto tip box -->
+    <div style="background: var(--azul-cl); border-radius: 8px; padding: 8px 12px; margin-top: 4mm; display: flex; gap: 8px; align-items: flex-start;">
+        <span style="font-size: 16px; flex-shrink: 0;">💬</span>
+        <div>
+            <div style="font-weight: 600; font-size: 10px; color: var(--azul); margin-bottom: 2px;">Dica de sessão de fotos</div>
+            <div style="font-size: 9.5px; color: var(--azul); line-height: 1.5;">
+                Com 1-2 horas no próprio Medplex você consegue todas as fotos essenciais de uma vez.
+                Peça ajuda a um amigo com câmera boa (ou celular recente com boa câmera).
+                <strong>Luz natural do consultório + jaleco = resultado profissional garantido.</strong>
+                Não precisa de fotógrafo profissional para começar.
+            </div>
+        </div>
+    </div>
+
+    <!-- footer pag1 -->
+    <div class="footer">
+        <p>Dra. Luiza Stoduto — Guia de Feedback · Site & Identidade Visual</p>
+        <div class="footer-brand">UzzAI · pág. 1 / 2</div>
+    </div>
+
+</div>
+
+
+<!-- ========================================
+     PÁGINA 2 — DECISÕES + PRÓXIMOS PASSOS
+     ======================================== -->
+<div class="page">
+
+    <!-- Header pag2 -->
+    <div class="header">
+        <div>
+            <div class="logo-text">Dra. Luiza <span>Stoduto</span></div>
+            <div class="logo-sub">Cirurgiã-dentista · CRO/RS 33802</div>
+        </div>
+        <div class="header-right">
+            <div><strong>Guia de Feedback</strong></div>
+            <div>Decisões do Site</div>
+            <div>Fevereiro 2025</div>
+        </div>
+    </div>
+
+    <!-- SEÇÃO 2: DECISÕES -->
+    <div class="section-title">
+        <div class="section-icon icon-sand">✅</div>
+        <h2>Decisões que precisamos tomar</h2>
+    </div>
+    <p class="section-intro">
+        Olha o manual de identidade visual que te enviei e responde cada pergunta abaixo. Pode ser uma mensagem de áudio no WhatsApp — eu processo tudo! 😄
+    </p>
+
+    <!-- Decisão 1: Paleta -->
+    <div class="decision">
+        <div class="decision-header">
+            <div class="decision-num">1</div>
+            <div class="decision-q">Paleta de cores — o que você acha das cores do manual?</div>
+        </div>
+        <div class="palette-row">
+            <div class="swatch" style="background: #5BA8C4;"></div>
+            <div class="swatch" style="background: #F7F3EE; border-color: #DDD;"></div>
+            <div class="swatch" style="background: #C4A882;"></div>
+            <div class="swatch" style="background: #7EC8BE;"></div>
+            <span class="swatch-label">Azul Praia + Areia + Madeira Clara + Verde-Água</span>
+        </div>
+        <div class="options-row" style="margin-top: 6px;">
+            <div class="option"><div class="option-radio"></div><span class="option-text">Adorei, pode usar assim! ✅</span></div>
+            <div class="option"><div class="option-radio"></div><span class="option-text">Quero o azul mais escuro</span></div>
+            <div class="option"><div class="option-radio"></div><span class="option-text">Quero o azul mais claro</span></div>
+            <div class="option"><div class="option-radio"></div><span class="option-text">Prefiro tons rosados</span></div>
+        </div>
+        <div class="decision-note">O que mais te incomoda / você mudaria? _______________________________________________</div>
+    </div>
+
+    <!-- Decisão 2: Logo -->
+    <div class="decision">
+        <div class="decision-header">
+            <div class="decision-num">2</div>
+            <div class="decision-q">Logo — como você prefere a assinatura visual?</div>
+        </div>
+        <div class="options-row">
+            <div class="option"><div class="option-radio"></div><span class="option-text">Só o nome (Dra. Luiza Stoduto)</span></div>
+            <div class="option"><div class="option-radio"></div><span class="option-text">Nome + ícone "Onda & Renda"</span></div>
+            <div class="option"><div class="option-radio"></div><span class="option-text">Quero criar no Canva depois</span></div>
+        </div>
+    </div>
+
+    <!-- Decisão 3: Depoimentos -->
+    <div class="decision">
+        <div class="decision-header">
+            <div class="decision-num">3</div>
+            <div class="decision-q">Seção de Depoimentos — como preferir lançar o site?</div>
+        </div>
+        <div class="options-row">
+            <div class="option"><div class="option-radio"></div><span class="option-text">Lançar sem depoimentos por enquanto</span></div>
+            <div class="option"><div class="option-radio"></div><span class="option-text">Usar depoimentos de colegas / faculdade</span></div>
+            <div class="option"><div class="option-radio"></div><span class="option-text">Substituir por seção de Formação/UFRGS</span></div>
+        </div>
+        <div class="decision-note">💡 Quando tiver 3 pacientes satisfeitos, peço reviews no Google e adicionamos no site automaticamente.</div>
+    </div>
+
+    <!-- Decisão 4: Serviços -->
+    <div class="decision">
+        <div class="decision-header">
+            <div class="decision-num">4</div>
+            <div class="decision-q">Serviços — confirma os que você atende hoje:</div>
+        </div>
+        <div class="options-row" style="flex-wrap: wrap;">
+            <div class="option"><div class="checkbox" style="width:12px;height:12px;border-radius:3px;"></div><span class="option-text">✦ Clareamento</span></div>
+            <div class="option"><div class="checkbox" style="width:12px;height:12px;border-radius:3px;"></div><span class="option-text">✦ Facetas em Resina</span></div>
+            <div class="option"><div class="checkbox" style="width:12px;height:12px;border-radius:3px;"></div><span class="option-text">✦ Extração de Sisos</span></div>
+            <div class="option"><div class="checkbox" style="width:12px;height:12px;border-radius:3px;"></div><span class="option-text">✦ Restaurações</span></div>
+            <div class="option"><div class="checkbox" style="width:12px;height:12px;border-radius:3px;"></div><span class="option-text">✦ Toxina Botulínica</span></div>
+            <div class="option"><div class="checkbox" style="width:12px;height:12px;border-radius:3px;"></div><span class="option-text">✦ Profilaxia/Limpeza</span></div>
+        </div>
+        <div class="decision-note">Tem algum serviço que falta na lista? ________________________________________________</div>
+    </div>
+
+    <!-- Decisão 5: Domínio -->
+    <div class="decision">
+        <div class="decision-header">
+            <div class="decision-num">5</div>
+            <div class="decision-q">Domínio do site — qual endereço você prefere?</div>
+        </div>
+        <div class="options-row">
+            <div class="option"><div class="option-radio"></div><span class="option-text">luizastoduto.com.br</span></div>
+            <div class="option"><div class="option-radio"></div><span class="option-text">drluizastoduto.com.br</span></div>
+            <div class="option"><div class="option-radio"></div><span class="option-text">Outro: ___________________</span></div>
+        </div>
+        <div class="decision-note">💡 A extensão .com.br é a mais confiável para profissional de saúde no Brasil.</div>
+    </div>
+
+    <!-- Decisão 6: Dados faltantes -->
+    <div class="decision">
+        <div class="decision-header">
+            <div class="decision-num">6</div>
+            <div class="decision-q">Dados que ainda precisamos — preencha abaixo:</div>
+        </div>
+        <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 4px 12px; padding-left: 28px; margin-top: 4px;">
+            <div style="font-size: 9.5px; color: var(--suave);">📧 E-mail profissional:</div>
+            <div style="border-bottom: 1px dashed var(--borda); font-size: 9.5px; color: var(--texto);">&nbsp;</div>
+            <div style="font-size: 9.5px; color: var(--suave);">🕐 Horário de atendimento:</div>
+            <div style="border-bottom: 1px dashed var(--borda); font-size: 9.5px; color: var(--texto);">Seg–Sex · horário comercial</div>
+            <div style="font-size: 9.5px; color: var(--suave);">📱 WhatsApp (confirmar):</div>
+            <div style="border-bottom: 1px dashed var(--borda); font-size: 9.5px; color: var(--texto);">+55 51 9531-3066 ✅</div>
+            <div style="font-size: 9.5px; color: var(--suave);">📷 Instagram (confirmar):</div>
+            <div style="border-bottom: 1px dashed var(--borda); font-size: 9.5px; color: var(--texto);">@luizastoduto ✅</div>
+        </div>
+    </div>
+
+    <!-- Decisão 7: Feedback geral -->
+    <div class="decision">
+        <div class="decision-header">
+            <div class="decision-num">7</div>
+            <div class="decision-q">Primeiro olhar no manual — o que você achou? Algum ponto que ficou de fora?</div>
+        </div>
+        <div style="padding-left: 28px; margin-top: 4px;">
+            <div style="border-bottom: 1px dashed var(--borda); margin-bottom: 6px; padding-bottom: 8px; font-size: 9px; color: var(--suave);">_____________________________________________________________________________</div>
+            <div style="border-bottom: 1px dashed var(--borda); padding-bottom: 8px; font-size: 9px; color: var(--suave);">_____________________________________________________________________________</div>
+        </div>
+    </div>
+
+    <hr class="divider" style="margin: 4mm 0 3mm;">
+
+    <!-- PRÓXIMOS PASSOS -->
+    <div class="section-title" style="margin-top: 0; margin-bottom: 3mm;">
+        <div class="section-icon icon-green">🚀</div>
+        <h2>O que acontece depois do seu feedback</h2>
+    </div>
+
+    <div class="steps-row">
+        <div class="step-card">
+            <div class="step-num">1</div>
+            <h4>Você me envia</h4>
+            <p>Fotos + decisões desta ficha respondidas pelo WhatsApp (áudio, texto ou foto da folha preenchida!)</p>
+        </div>
+        <div class="step-card">
+            <div class="step-num">2</div>
+            <h4>Ajusto o manual</h4>
+            <p>Afino as cores, logo e detalhes conforme seu feedback. Você aprova a versão final.</p>
+        </div>
+        <div class="step-card">
+            <div class="step-num">3</div>
+            <h4>Desenvolvo o site</h4>
+            <p>Com manual aprovado + fotos em mãos, construo o site completo em Next.js.</p>
+        </div>
+        <div class="step-card">
+            <div class="step-num">4</div>
+            <h4>Revisão final</h4>
+            <p>Você vê o site funcionando, faz pequenos ajustes e aprova para lançar!</p>
+        </div>
+        <div class="step-card">
+            <div class="step-num">5</div>
+            <h4>🎉 No ar!</h4>
+            <p>Site publicado com domínio, HTTPS e pronto para captar pacientes em Porto Alegre.</p>
+        </div>
+    </div>
+
+    <!-- footer pag2 -->
+    <div class="footer">
+        <p>Dúvidas? Me chama no WhatsApp — respondemos tudo!</p>
+        <div class="footer-brand">UzzAI · pág. 2 / 2</div>
+    </div>
+
+</div>
+
+</body>
+</html>

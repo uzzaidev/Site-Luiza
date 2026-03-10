@@ -1,42 +1,91 @@
+import Image from 'next/image';
 import Link from 'next/link';
 import { siteConfig } from '@/site.config';
+import { services } from '@/data/services';
+import { getWhatsAppUrl } from '@/lib/contact';
 
-/**
- * Footer da página com contatos oficiais e redes sociais.
- * Mantém o mesmo conjunto de dados usado pelo Header e pelo siteConfig.
- */
 export function Footer() {
-  const contact = siteConfig.contact;
-  const socials = Object.entries(siteConfig.social).filter(
-    ([, value]) => typeof value === 'string' && value.trim().length > 0,
-  );
+  const year = new Date().getFullYear();
 
   return (
-    <>
-      <footer className="bg-[#0F2537] text-white/70 py-20 w-full">
-        <div className="w-full px-4 sm:px-8">
-          <div className="flex flex-col items-center justify-center gap-2 w-full">
-            <p className="text-center text-base m-0 leading-tight w-full" style={{ textAlign: 'center' }}>
-              © 2025 Luciano Giorgetta | Instrutor de Yôga | Porto Alegre, RS
+    <footer className="mt-20 border-t border-[#d8e3ea] bg-white">
+      <div className="mx-auto grid w-full max-w-7xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-4 lg:px-8">
+        <div className="space-y-4">
+          <div className="inline-flex items-center gap-3">
+            <div className="relative h-12 w-12 overflow-hidden rounded-full border border-[#d9e6ef] bg-white">
+              <Image src="/images/luiza/logo-ls.jpg" alt="Logo Dra. Luiza Stoduto" fill sizes="48px" className="object-cover" />
+            </div>
+            <div>
+              <p className="font-[var(--font-display)] text-xl text-[var(--azul-profundo)]">Dra. Luiza Stoduto</p>
+              <p className="text-xs uppercase tracking-[0.2em] text-[var(--madeira)]">{siteConfig.identity.cro}</p>
+            </div>
+          </div>
+          <p className="text-sm text-[#4a5a63]">{siteConfig.identity.tagline}</p>
+          <Link
+            href={siteConfig.social.instagram}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="inline-flex text-sm font-medium text-[var(--azul-profundo)] hover:text-[var(--azul-praia)]"
+          >
+            @luiza.dentista
+          </Link>
+        </div>
+
+        <div>
+          <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--madeira)]">Navegacao</h3>
+          <ul className="mt-4 space-y-2">
+            {siteConfig.navigation.footer.quickLinks.map((item) => (
+              <li key={item.href}>
+                <Link href={item.href} className="text-sm text-[#32424b] transition hover:text-[var(--azul-profundo)]">
+                  {item.label}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--madeira)]">Servicos</h3>
+          <ul className="mt-4 space-y-2">
+            {services.slice(0, 6).map((service) => (
+              <li key={service.slug}>
+                <Link href={`/servicos/${service.slug}`} className="text-sm text-[#32424b] transition hover:text-[var(--azul-profundo)]">
+                  {service.title}
+                </Link>
+              </li>
+            ))}
+          </ul>
+        </div>
+
+        <div>
+          <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--madeira)]">Contato</h3>
+          <div className="mt-4 space-y-2 text-sm text-[#32424b]">
+            <p>{siteConfig.contact.address.street}</p>
+            <p>{siteConfig.contact.address.complement}</p>
+            <p>
+              {siteConfig.contact.address.city} - {siteConfig.contact.address.state}
             </p>
-            <p className="text-center text-sm italic m-0 leading-tight w-full" style={{ textAlign: 'center' }}>
-              Yôga para corpos reais, filosofia para mentes livres.
-            </p>
+            <p>{siteConfig.contact.phone.primary}</p>
+            <Link
+              href={getWhatsAppUrl()}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex font-semibold text-[var(--azul-profundo)] hover:text-[var(--azul-praia)]"
+            >
+              Agendar pelo WhatsApp
+            </Link>
           </div>
         </div>
-      </footer>
-
-      <div className="bg-black py-4 px-8 text-center">
-        <a
-          href="https://uzzai.com.br"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-white no-underline font-sans text-sm font-semibold tracking-wide transition-colors duration-300 hover:text-[#D4AF37]"
-        >
-          FEITO COM MUITO AMOR E PRÁNA POR Uzz.Ai 💚
-        </a>
       </div>
-    </>
+
+      <div className="border-t border-[#e5ecef] bg-[#f8fbfd]">
+        <div className="mx-auto flex w-full max-w-7xl flex-col gap-1 px-4 py-4 text-xs text-[#6a7982] sm:px-6 lg:px-8">
+          <p>
+            © {year} {siteConfig.identity.name}. Todos os direitos reservados.
+          </p>
+          <p>{siteConfig.identity.cro}</p>
+        </div>
+      </div>
+    </footer>
   );
 }
-

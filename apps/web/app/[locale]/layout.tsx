@@ -2,41 +2,47 @@ import type { Metadata } from 'next';
 import { NextIntlClientProvider } from 'next-intl';
 import { getMessages, unstable_setRequestLocale } from 'next-intl/server';
 import { notFound } from 'next/navigation';
-import { Playfair_Display, Montserrat, Inter } from 'next/font/google';
+import { Cormorant_Garamond, DM_Sans } from 'next/font/google';
 import { locales } from '@/i18n';
 import { siteConfig } from '@/site.config';
 import '../globals.css';
-import '../luciano.css';
+import '../luiza.css';
 import { Header } from '@/components/Header';
 import { Footer } from '@/components/Footer';
+import { WhatsAppFloat } from '@/components/ui/WhatsAppFloat';
+import { ScrollRevealManager } from '@/components/ui/ScrollRevealManager';
 
-// Configurar fontes do Google Fonts
-const playfairDisplay = Playfair_Display({
+const cormorantGaramond = Cormorant_Garamond({
   subsets: ['latin'],
-  weight: ['400', '600', '700'],
+  weight: ['400', '500', '600', '700'],
   variable: '--font-display',
   display: 'swap',
 });
 
-const montserrat = Montserrat({
+const dmSans = DM_Sans({
   subsets: ['latin'],
-  weight: ['400', '600'],
-  variable: '--font-sans',
-  display: 'swap',
-});
-
-const inter = Inter({
-  subsets: ['latin'],
-  weight: ['400', '500', '600'],
+  weight: ['400', '500', '600', '700'],
   variable: '--font-body',
   display: 'swap',
 });
 
 export const metadata: Metadata = {
-  title: siteConfig.identity.name || 'Template Skeleton',
-  description:
-    siteConfig.identity.description ||
-    'Use site.config.ts para configurar este template e criar sites profissionais rapidamente.',
+  title: `${siteConfig.identity.name} | Odontologia em Porto Alegre`,
+  description: siteConfig.identity.description,
+  metadataBase: new URL(siteConfig.urls.production),
+  icons: {
+    icon: '/images/luiza/logo-ls.jpg',
+    apple: '/images/luiza/logo-ls.jpg',
+  },
+  openGraph: {
+    title: siteConfig.identity.name,
+    description: siteConfig.identity.description,
+    url: siteConfig.urls.production,
+    siteName: siteConfig.identity.name,
+    locale: 'pt_BR',
+    type: 'website',
+    images: ['/images/luiza/luiza-jaleco.jpg'],
+  },
 };
 
 export function generateStaticParams() {
@@ -53,7 +59,7 @@ export default async function LocaleLayout({
   const { locale } = await params;
   unstable_setRequestLocale(locale);
 
-  if (!locales.includes(locale as any)) {
+  if (!locales.includes(locale as (typeof locales)[number])) {
     notFound();
   }
 
@@ -61,13 +67,13 @@ export default async function LocaleLayout({
 
   return (
     <html lang={locale}>
-      <body
-        className={`${playfairDisplay.variable} ${montserrat.variable} ${inter.variable} bg-[#F8F9FA] text-[#2C3E50] antialiased leading-[1.7]`}
-      >
+      <body className={`${cormorantGaramond.variable} ${dmSans.variable} font-[var(--font-body)] antialiased`}>
         <NextIntlClientProvider messages={messages}>
+          <ScrollRevealManager />
           <Header />
           <main className="min-h-screen">{children}</main>
           <Footer />
+          <WhatsAppFloat />
         </NextIntlClientProvider>
       </body>
     </html>

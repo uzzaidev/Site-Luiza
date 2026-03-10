@@ -1,5 +1,9 @@
-import { unstable_setRequestLocale } from 'next-intl/server';
+import type { Metadata } from 'next';
 import Image from 'next/image';
+import Link from 'next/link';
+import { unstable_setRequestLocale } from 'next-intl/server';
+import { LaceOrnament } from '@/components/ui/LaceOrnament';
+import { getWhatsAppUrl } from '@/lib/contact';
 import { siteConfig } from '@/site.config';
 
 type Props = {
@@ -8,165 +12,119 @@ type Props = {
   }>;
 };
 
+export const metadata: Metadata = {
+  title: 'Sobre a Dra. Luiza Stoduto | Stoduto Odontologia',
+  description: 'Conheca a historia, abordagem de atendimento e formacao da Dra. Luiza Stoduto em Porto Alegre.',
+};
+
 export default async function SobrePage({ params }: Props) {
   const { locale } = await params;
   unstable_setRequestLocale(locale);
-  const about = siteConfig.about;
+
+  const whatsappUrl = getWhatsAppUrl('Ola, Dra. Luiza! Gostaria de saber mais sobre seu atendimento.');
 
   return (
     <>
-      <section className="hero-interno">
-        <h1>Minha História</h1>
-        <p>Do caos da agulha à quietude do asana. Uma jornada de transformação real.</p>
+      <section className="relative h-[74vh] min-h-[470px] max-h-[640px] overflow-hidden sm:h-auto sm:min-h-0 sm:max-h-none sm:py-24">
+        <Image
+          src="/images/luiza/luiza-informal-1.jpg"
+          alt="Dra. Luiza Stoduto"
+          fill
+          className="object-cover object-[50%_34%] md:object-[50%_34%] lg:object-[50%_34%]"
+          priority
+        />
+
+        <div className="absolute inset-0 bg-gradient-to-t from-[rgba(8,20,28,0.88)] via-[rgba(15,33,43,0.44)] to-[rgba(22,42,52,0.26)] sm:hidden" />
+        <div className="absolute inset-0 hidden bg-[rgba(22,42,52,0.55)] sm:block" />
+
+        <div className="section-shell relative z-10 flex h-full items-end pb-6 text-white sm:block sm:h-auto sm:pb-0">
+          <div className="max-w-[21rem] sm:max-w-xl md:-ml-10 lg:-ml-16">
+            <p className="section-eyebrow !text-[#dfc6a2]">Sobre a profissional</p>
+            <h1 className="mt-2 font-[var(--font-display)] text-5xl leading-[0.98] sm:text-6xl">Olá, eu sou a Dra. Luiza</h1>
+            <p className="mt-4 text-base leading-relaxed text-white/95 sm:max-w-xl">
+              Cirurgia-dentista, {siteConfig.identity.cro}, formada pela UFRGS. Meu compromisso e unir técnica, escuta
+              e cuidado para que cada paciente se sinta seguro desde a primeira consulta.
+            </p>
+          </div>
+        </div>
       </section>
 
-      <div className="sobre-content">
-        {/* Seção 1: Adolescente */}
-        <div className="story-section">
-          <div className="story-text">
-            <h2>2013: <span className="accent">O Primeiro Contato</span></h2>
-            <p>
-              Eu tinha 15 anos quando minha mãe insistiu para eu experimentar uma aula de Yôga.
-              Confesso que fui sem muita empolgação. Mas na primeira aula, algo mudou.
-            </p>
-            <p>
-              Senti mais energia, mais disposição. Meu rendimento no skate melhorou.
-              Comecei a dormir melhor, a me sentir mais feliz no dia a dia.
-            </p>
-            <blockquote>
-              "Foi quando percebi: isso funciona de verdade. Não é papo furado."
-            </blockquote>
+      <section className="lazy-section bg-white py-20">
+        <div className="section-shell grid gap-10 lg:grid-cols-[1.05fr_0.95fr]">
+          <div className="space-y-4">
+            <p className="section-eyebrow">Minha historia</p>
+            <h2 className="section-title text-4xl sm:text-5xl">Cuidar de pessoas sempre foi o centro da minha escolha</h2>
+            {siteConfig.about.story.map((paragraph) => (
+              <p key={paragraph} className="text-base leading-relaxed text-[#40515b]">
+                {paragraph}
+              </p>
+            ))}
           </div>
-          <div className="bg-white p-8 rounded-2xl shadow-lg min-h-[300px] flex items-center justify-center text-gray-500 italic relative overflow-hidden">
-            <Image
-              src="/images/luciano-sem-fundo-1.png"
-              alt="Luciano jovem praticando"
-              fill
-              className="object-contain p-4"
-            />
-          </div>
-        </div>
 
-        {/* Seção 2: Tatuador */}
-        <div className="story-section">
-          <div className="story-text">
-            <h2>2013-2021: <span className="accent">Tatuador & Praticante</span></h2>
-            <p>
-              Durante 8 anos, trabalhei como tatuador profissional. Meu estilo era oriental/japonês.
-              Meu corpo inteiro virou uma tela. Arte, expressão, identidade.
-            </p>
-            <p>
-              Mas enquanto tatuava, continuei praticando Yôga. A filosofia começou a fazer cada vez mais sentido.
-              Samkhya, Tantra, a ideia de liberdade, de usar a mente como ferramenta, não como prisão.
-            </p>
-            <p>
-              Chegou um momento em que tatuar já não fazia mais sentido. Eu queria transmitir o que estava
-              vivendo:
-              essa melhora na qualidade de vida, essa energia constante, essa clareza mental.
-            </p>
-          </div>
-          <div className="story-visual">
-            <div className="bg-white p-8 rounded-2xl shadow-lg min-h-[300px] flex items-center justify-center text-gray-500 italic relative overflow-hidden w-full h-full">
+          <div className="relative mx-auto w-full max-w-[460px]">
+            <LaceOrnament size="md" className="pointer-events-none absolute -left-10 -top-8 opacity-45" />
+            <div className="ornament-frame relative overflow-hidden rounded-[1.8rem] border border-[#d8e5ed] bg-[var(--areia)] p-2 shadow-[0_20px_50px_rgba(29,90,118,0.16)]">
               <Image
-                src="/images/luciano-3-sem-fundo.png"
-                alt="Luciano tatuador"
-                fill
-                className="object-contain p-4"
+                src="/images/luiza/luiza-jaleco.jpg"
+                alt="Dra. Luiza com jaleco"
+                width={1365}
+                height={2048}
+                loading="lazy"
+                decoding="async"
+                className="h-[560px] w-full rounded-[1.4rem] object-cover"
               />
-            </div>
-          </div>
-        </div>
-
-        {/* Seção 3: Instrutor */}
-        <div className="story-section">
-          <div className="story-text">
-            <h2>2021-Hoje: <span className="accent">Instrutor de Yôga</span></h2>
-            <p>
-              Em 2021, fiz a transição de carreira. Virei instrutor de Yôga.
-              Hoje sou Nível 3 pela Humana, o nível mais alto de certificação.
-            </p>
-            <p>
-              Ministro aulas particulares, em grupo, workshops de filosofia.
-              Já atendi mais de 200 alunos, dei mais de 1000 práticas.
-            </p>
-            <blockquote>
-              "Meu diferencial? Consigo transmitir filosofia complexa de forma acessível.
-              Sem misticismo vazio. Para pessoas reais, com vidas reais."
-            </blockquote>
-            <p>
-              Não sou um guru inalcançável. Sou alguém que já trilhou o caminho e agora ensina o mapa.
-            </p>
-          </div>
-          <div className="story-visual">
-            <div className="bg-white p-8 rounded-2xl shadow-lg min-h-[300px] flex items-center justify-center text-gray-500 italic relative overflow-hidden w-full h-full">
-              <Image
-                src="/images/Luciano_2_sem_fundo.png"
-                alt="Luciano instruindo / em asana"
-                fill
-                className="object-contain p-4"
-              />
-            </div>
-          </div>
-        </div>
-      </div>
-
-      {/* Valores */}
-      <section className="valores">
-        <div className="valores-container">
-          <h2>O Que Me Move</h2>
-          <div className="valores-grid">
-            <div className="valor-card">
-              <h3>Autenticidade</h3>
-              <p>
-                Não finjo ser quem não sou. Sou tatuado, gosto de skate, tenho uma história real.
-                Yôga não é sobre perfeição, é sobre transformação.
-              </p>
-            </div>
-
-            <div className="valor-card">
-              <h3>Filosofia Acessível</h3>
-              <p>
-                Samkhya e Tantra são profundos, mas não precisam ser complicados.
-                Traduzo conceitos complexos para uma linguagem que faz sentido.
-              </p>
-            </div>
-
-            <div className="valor-card">
-              <h3>Liberdade</h3>
-              <p>
-                Yôga é sobre liberdade, não repressão. Sobre usar a mente como ferramenta,
-                não ser dominado por ela. Sobre viver com energia e clareza.
-              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Certificações */}
-      <section className="certificacoes">
-        <div className="certificacoes-container">
-          <h2>Formação & Certificações</h2>
-          <div className="cert-list">
-            <div className="cert-item">
-              <strong>Nível 3</strong>
-              <p>Humana (Certificação Máxima)</p>
-            </div>
-            <div className="cert-item">
-              <strong>13 anos</strong>
-              <p>de Prática Contínua</p>
-            </div>
-            <div className="cert-item">
-              <strong>+20 cursos</strong>
-              <p>de Filosofia & Técnica</p>
-            </div>
-            <div className="cert-item">
-              <strong>4 Prana Weekends</strong>
-              <p>Retiros na Praia do Rosa</p>
-            </div>
+      <section className="lazy-section lace-tile bg-[var(--areia)] py-20">
+        <div className="section-shell">
+          <div className="mx-auto max-w-3xl text-center">
+            <p className="section-eyebrow">Minha abordagem</p>
+            <h2 className="section-title mt-2 text-4xl sm:text-5xl">Tratamento com transparencia, leveza e cuidado</h2>
+          </div>
+          <div className="mt-10 grid gap-4 md:grid-cols-3">
+            {siteConfig.about.pillars.map((pillar) => (
+              <article key={pillar.title} className="rounded-2xl border border-[#d6e4eb] bg-white p-6">
+                <h3 className="font-[var(--font-display)] text-3xl text-[var(--azul-profundo)]">{pillar.title}</h3>
+                <p className="mt-3 text-sm leading-relaxed text-[#40515b]">{pillar.description}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="lazy-section bg-white py-20">
+        <div className="section-shell">
+          <p className="section-eyebrow text-center">Formacao completa</p>
+          <h2 className="section-title mt-2 text-center text-4xl sm:text-5xl">Linha profissional</h2>
+          <div className="mx-auto mt-10 max-w-3xl space-y-4">
+            {[
+              'UFRGS - Formacao em Odontologia (Clinico Geral)',
+              'Habilitacao em Toxina Botulinica aplicada a Odontologia',
+              'Registro profissional ativo: CRO/RS 33802',
+              'Atendimento no Medplex Santana, Porto Alegre',
+            ].map((item, index) => (
+              <div key={item} className="rounded-2xl border border-[#d8e5ec] bg-[var(--areia)] px-5 py-4">
+                <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[var(--madeira)]">Etapa {index + 1}</p>
+                <p className="mt-1 text-sm text-[#394a53]">{item}</p>
+              </div>
+            ))}
+          </div>
+
+          <div className="mt-10 text-center">
+            <Link
+              href={whatsappUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="cta-button cta-pulse inline-flex items-center rounded-full bg-[var(--azul-profundo)] px-6 py-3 text-sm font-semibold text-white transition hover:bg-[var(--azul-praia)]"
+            >
+              Vamos conversar pelo WhatsApp
+            </Link>
           </div>
         </div>
       </section>
     </>
   );
 }
-
