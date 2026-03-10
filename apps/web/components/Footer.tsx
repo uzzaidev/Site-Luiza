@@ -1,4 +1,4 @@
-import Image from 'next/image';
+﻿import Image from 'next/image';
 import Link from 'next/link';
 import { siteConfig } from '@/site.config';
 import { services } from '@/data/services';
@@ -80,12 +80,24 @@ export function Footer() {
 
       <div className="border-t border-[#e5ecef] bg-[#f8fbfd]">
         <div className="mx-auto flex w-full max-w-7xl flex-col gap-1 px-4 py-4 text-xs text-[#6a7982] sm:px-6 lg:px-8">
-          <p>
-            © {year} {siteConfig.identity.name}. Todos os direitos reservados.
-          </p>
+          <p>(c) {year} {siteConfig.identity.name}. Todos os direitos reservados.</p>
           <p>{siteConfig.identity.cro}</p>
+        </div>
+      </div>
+
+      <div className="border-t border-black/20 bg-[#09111a]">
+        <div className="mx-auto w-full max-w-7xl px-4 py-2 text-center sm:px-6 lg:px-8">
+          <a
+            href="https://www.uzzai.com.br"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-[11px] font-semibold tracking-[0.06em] text-white/95 transition hover:text-[#7EC8BE]"
+          >
+            Feito com 💚 e muitos sorrisos por Uzz.Ai
+          </a>
         </div>
       </div>
     </footer>
   );
 }
+
