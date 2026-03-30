@@ -7,8 +7,10 @@ import { getWhatsAppUrl } from '@/lib/contact';
 export function Footer() {
   const year = new Date().getFullYear();
 
+  // Espaço antes do conteúdo: usar padding (pt-20), não margin no footer — margin fica “transparente”
+  // e o fundo do body (#f7f3ee) aparecia como faixa entre o main e o rodapé em todas as páginas.
   return (
-    <footer className="mt-20 border-t border-[#d8e3ea] bg-white">
+    <footer className="border-t border-[#d8e3ea] bg-white pt-20">
       <div className="mx-auto grid w-full max-w-7xl gap-10 px-4 py-12 sm:px-6 lg:grid-cols-4 lg:px-8">
         <div className="space-y-4">
           <div className="inline-flex items-center gap-3">
