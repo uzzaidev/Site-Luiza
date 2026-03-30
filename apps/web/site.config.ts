@@ -1,3 +1,66 @@
+/** Unidade física: endereço, mapa e foto de fachada (quando houver). */
+export type SiteVenue = {
+  id: 'medplex' | 'santa-helena';
+  title: string;
+  street: string;
+  complement: string;
+  neighborhood: string;
+  city: string;
+  state: string;
+  zipCode: string;
+  mapEmbedUrl: string;
+  mapsOpenUrl: string;
+  directions: string[];
+  facadeImage: { src: string; alt: string };
+};
+
+const venues: SiteVenue[] = [
+  {
+    id: 'medplex',
+    title: 'Medplex Santana',
+    street: 'Rua Gomes Jardim, 201',
+    complement: 'Medplex Santana',
+    neighborhood: 'Santana',
+    city: 'Porto Alegre',
+    state: 'RS',
+    zipCode: '90620-130',
+    mapEmbedUrl:
+      'https://www.google.com/maps?q=Medplex+Santana+Porto+Alegre+RS&output=embed',
+    mapsOpenUrl: 'https://www.google.com/maps/search/?api=1&query=Medplex+Santana+Porto+Alegre+RS',
+    directions: [
+      'Acesso fácil para quem vem da região central e da zona norte.',
+      'Há estacionamento no complexo Medplex.',
+      'Ponto de referência: esquina da Rua Gomes Jardim com Av. Ipiranga.',
+    ],
+    facadeImage: {
+      src: '/images/luiza/predio-medplex.webp',
+      alt: 'Prédio do consultório no Medplex Santana',
+    },
+  },
+  {
+    id: 'santa-helena',
+    title: 'Odontologia Santa Helena',
+    street: 'Rua João Berutti, 675',
+    complement: 'Odontologia Santa Helena',
+    neighborhood: '',
+    city: 'Porto Alegre',
+    state: 'RS',
+    zipCode: '',
+    mapEmbedUrl:
+      'https://www.google.com/maps?q=Rua+Jo%C3%A3o+Berutti,+675,+Porto+Alegre,+RS&output=embed',
+    mapsOpenUrl:
+      'https://www.google.com/maps/search/?api=1&query=Rua+Jo%C3%A3o+Berutti,+675,+Porto+Alegre,+RS',
+    directions: [
+      'Consultório na Odontologia Santa Helena, João Berutti.',
+      'Combine pelo WhatsApp qual unidade melhor se encaixa no seu horário.',
+    ],
+    facadeImage: {
+      src: '/images/Odontologia SANTA HELENA.webp',
+      alt: 'Fachada da Odontologia Santa Helena',
+    },
+  },
+];
+
 export const siteConfig = {
   identity: {
     name: 'Dra. Luiza Stoduto',
@@ -14,36 +77,39 @@ export const siteConfig = {
     basePath: '/',
   },
 
+  /** Unidades de atendimento (mapa, endereço e foto por local). */
+  venues,
+
   contact: {
     email: {
       primary: 'contato@stodutoodontologia.com.br',
       secondary: '',
     },
     phone: {
-      primary: '+55 51 9531-3066',
-      whatsapp: '555195313066',
+      primary: '+55 51 99531-3066',
+      whatsapp: '5551995313066',
       whatsappMessage:
         'Olá, Dra. Luiza! Vim pelo site e gostaria de agendar uma avaliação odontológica.',
     },
     address: {
       hasPhysicalAddress: true,
-      street: 'Rua Gomes Jardim, 201',
-      complement: 'Medplex Santana',
-      neighborhood: 'Santana',
-      city: 'Porto Alegre',
-      state: 'RS',
-      zipCode: '90620-130',
+      street: venues[0].street,
+      complement: venues[0].complement,
+      neighborhood: venues[0].neighborhood,
+      city: venues[0].city,
+      state: venues[0].state,
+      zipCode: venues[0].zipCode,
       country: 'Brasil',
     },
     businessHours: {
       days: 'Segunda a Sexta',
-      hours: 'Horário comercial',
+      hours: '17h às 22h',
       timezone: 'America/Sao_Paulo',
     },
   },
 
   social: {
-    instagram: 'https://instagram.com/luiza.dentista',
+    instagram: 'https://instagram.com/luizastoduto',
     linkedin: '',
     facebook: '',
     youtube: '',
@@ -74,7 +140,7 @@ export const siteConfig = {
   },
 
   hero: {
-    eyebrow: 'CRO/RS 33802 · Medplex Santana, Porto Alegre',
+    eyebrow: 'CRO/RS 33802 · Medplex Santana & Odontologia Santa Helena · Porto Alegre',
     title: 'Entre risadas e sorrisos',
     subtitle:
       'Odontologia humanizada com leveza, carinho e transparência em cada atendimento.',
@@ -150,20 +216,16 @@ export const siteConfig = {
       description: 'Habilitada para harmonização facial e controle de bruxismo.',
     },
     {
-      title: 'Medplex Santana',
-      description: 'Estrutura moderna em local de referência em Porto Alegre.',
+      title: 'Dois consultórios',
+      description: 'Atendimento no Medplex Santana (Gomes Jardim) e na Odontologia Santa Helena (João Berutti).',
     },
   ],
 
+  /** Compatibilidade: primeiro mapa + direções do Medplex. Preferir `venues`. */
   location: {
-    shortLabel: 'Medplex Santana, Porto Alegre',
-    mapEmbedUrl:
-      'https://www.google.com/maps?q=Medplex+Santana+Porto+Alegre&output=embed',
-    directions: [
-      'Acesso fácil para quem vem da região central e da zona norte.',
-      'Há estacionamento no complexo Medplex.',
-      'Ponto de referência: esquina da Rua Gomes Jardim com Av. Ipiranga.',
-    ],
+    shortLabel: 'Dois consultórios em Porto Alegre',
+    mapEmbedUrl: venues[0].mapEmbedUrl,
+    directions: venues[0].directions,
   },
 
   branding: {

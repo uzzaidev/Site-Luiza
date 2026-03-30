@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     siteName: siteConfig.identity.name,
     locale: 'pt_BR',
     type: 'website',
-    images: ['/images/luiza/luiza-jaleco.jpg'],
+    images: ['/images/luiza/luiza_jaleco_atualizado_hero2.jpeg'],
   },
 };
 

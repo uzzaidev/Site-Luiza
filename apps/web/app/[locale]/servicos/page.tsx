@@ -6,22 +6,13 @@ import { services } from '@/data/services';
 import { siteConfig } from '@/site.config';
 import { getWhatsAppUrl } from '@/lib/contact';
 import { LaceOrnament } from '@/components/ui/LaceOrnament';
+import { ServiceOrbIcon } from '@/lib/service-icons';
 
 type Props = {
   params: Promise<{
     locale: string;
   }>;
 };
-
-function serviceMark(title: string) {
-  return title
-    .split(' ')
-    .filter((part) => part.length > 2)
-    .slice(0, 2)
-    .map((part) => part[0])
-    .join('')
-    .toUpperCase();
-}
 
 export const metadata: Metadata = {
   title: 'Serviços odontológicos | Dra. Luiza Stoduto',
@@ -50,7 +41,8 @@ export default async function ServicosPage({ params }: Props) {
 
       <section className="lazy-section bg-white py-16">
         <div className="section-shell grid gap-8 lg:grid-cols-[1.05fr_0.95fr]">
-          <div className="overflow-hidden rounded-[1.6rem] border border-[#dbe7ee]">
+          {/* Marco E: recorte “faixa” para caso clínico (raios contrastantes leves). */}
+          <div className="photo-shell photo-shell--e relative min-h-[420px]">
             <Image
               src="/images/luiza/antes-depois.jpg"
               alt="Antes e depois de tratamento odontológico"
@@ -58,7 +50,7 @@ export default async function ServicosPage({ params }: Props) {
               height={3375}
               loading="lazy"
               decoding="async"
-              className="h-full min-h-[420px] w-full object-cover"
+              className="photo-crop h-full min-h-[420px] w-full object-cover"
             />
           </div>
           <div className="space-y-4 rounded-[1.6rem] border border-[#dbe7ee] bg-[var(--areia)] p-7">
@@ -86,8 +78,13 @@ export default async function ServicosPage({ params }: Props) {
       <section className="lazy-section bg-white pb-20">
         <div className="section-shell grid gap-4 md:grid-cols-2 lg:grid-cols-3">
           {services.map((service) => (
-            <article key={service.slug} className="service-card-pro rounded-2xl border border-[#d8e5ec] bg-[var(--areia)] p-6">
-              <span className="service-card-orb">{serviceMark(service.title)}</span>
+            <article
+              key={service.slug}
+              className="service-card-pro rounded-[1.65rem] border border-[#d8e5ec] bg-[var(--areia)] p-6"
+            >
+              <span className="service-card-orb">
+                <ServiceOrbIcon slug={service.slug} />
+              </span>
               <h3 className="mt-4 font-[var(--font-display)] text-3xl text-[var(--azul-profundo)]">{service.title}</h3>
               <p className="mt-2 text-sm text-[#3e4f58]">{service.shortDescription}</p>
               <p className="mt-4 text-sm leading-relaxed text-[#44555e]">{service.fullDescription}</p>

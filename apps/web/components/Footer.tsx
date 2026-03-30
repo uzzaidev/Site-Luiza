@@ -1,4 +1,4 @@
-﻿import Image from 'next/image';
+import Image from 'next/image';
 import Link from 'next/link';
 import { siteConfig } from '@/site.config';
 import { services } from '@/data/services';
@@ -27,7 +27,7 @@ export function Footer() {
             rel="noopener noreferrer"
             className="inline-flex text-sm font-medium text-[var(--azul-profundo)] hover:text-[var(--azul-praia)]"
           >
-            @luiza.dentista
+            @luizastoduto
           </Link>
         </div>
 
@@ -59,12 +59,17 @@ export function Footer() {
 
         <div>
           <h3 className="text-sm font-semibold uppercase tracking-[0.2em] text-[var(--madeira)]">Contato</h3>
-          <div className="mt-4 space-y-2 text-sm text-[#32424b]">
-            <p>{siteConfig.contact.address.street}</p>
-            <p>{siteConfig.contact.address.complement}</p>
-            <p>
-              {siteConfig.contact.address.city} - {siteConfig.contact.address.state}
-            </p>
+          <div className="mt-4 space-y-4 text-sm text-[#32424b]">
+            {siteConfig.venues.map((venue) => (
+              <div key={venue.id}>
+                <p className="font-semibold text-[var(--azul-profundo)]">{venue.title}</p>
+                <p>{venue.street}</p>
+                <p>{venue.complement}</p>
+                <p>
+                  {venue.city} - {venue.state}
+                </p>
+              </div>
+            ))}
             <p>{siteConfig.contact.phone.primary}</p>
             <Link
               href={getWhatsAppUrl()}

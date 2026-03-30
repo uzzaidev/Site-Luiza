@@ -63,15 +63,16 @@ export default async function SobrePage({ params }: Props) {
 
           <div className="relative mx-auto w-full max-w-[460px]">
             <LaceOrnament size="md" className="pointer-events-none absolute -left-10 -top-8 opacity-45" />
-            <div className="ornament-frame relative overflow-hidden rounded-[1.8rem] border border-[#d8e5ed] bg-[var(--areia)] p-2 shadow-[0_20px_50px_rgba(29,90,118,0.16)]">
+            {/* Marco D: raios alternados (um canto mais aberto). */}
+            <div className="photo-shell photo-shell--d ornament-frame relative">
               <Image
-                src="/images/luiza/luiza-jaleco.jpg"
+                src="/images/luiza/luiza_jaleco_atualizado_hero2.jpeg"
                 alt="Dra. Luiza com jaleco"
                 width={1365}
                 height={2048}
                 loading="lazy"
                 decoding="async"
-                className="h-[560px] w-full rounded-[1.4rem] object-cover"
+                className="photo-crop h-[560px] w-full object-cover"
               />
             </div>
           </div>
@@ -104,7 +105,7 @@ export default async function SobrePage({ params }: Props) {
               'UFRGS - Formacao em Odontologia (Clinico Geral)',
               'Habilitacao em Toxina Botulinica aplicada a Odontologia',
               'Registro profissional ativo: CRO/RS 33802',
-              'Atendimento no Medplex Santana, Porto Alegre',
+              'Atendimento no Medplex Santana e na Odontologia Santa Helena, Porto Alegre',
             ].map((item, index) => (
               <div key={item} className="rounded-2xl border border-[#d8e5ec] bg-[var(--areia)] px-5 py-4">
                 <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[var(--madeira)]">Etapa {index + 1}</p>

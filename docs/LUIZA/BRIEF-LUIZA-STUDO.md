@@ -51,13 +51,13 @@ Este é o **segundo projeto real** do UzzBuilder (o primeiro foi Luciano, profes
 | **CRO** | CRO/RS 33802 |
 | **Especialidade** | Clínico Geral |
 | **Formação** | UFRGS (Universidade Federal do Rio Grande do Sul) |
-| **WhatsApp/Telefone** | +55 51 9531-3066 |
+| **WhatsApp/Telefone** | +55 51 99531-3066 |
 | **Localização** | Medplex Santana, Porto Alegre - RS |
 | **Tempo de formada** | Recém-formada (aprox. 1 semana na data da reunião) |
 | **Atende** | Crianças, adultos e idosos |
 | **Canais atuais** | Instagram + Indicação |
 | **Anúncios pagos** | Nunca fez (interesse futuro em aprender) |
-| **Agendamento atual** | WhatsApp +55 51 9531-3066 |
+| **Agendamento atual** | WhatsApp +55 51 99531-3066 |
 | **Google Maps** | Ainda sem presença (**criar urgente**) |
 | **Instagram** | ✅ @luizastoduto |
 | **LinkedIn** | ✅ Criado recentemente, não atualizado |
@@ -307,7 +307,7 @@ Este é o **segundo projeto real** do UzzBuilder (o primeiro foi Luciano, profes
 | **Local** | Medplex Santana |
 | **Endereço** | R. Gomes Jardim, 201 — Santana, Porto Alegre - RS |
 | **Bairro** | Santana, Porto Alegre - RS |
-| **Telefone/WhatsApp** | +55 51 9531-3066 |
+| **Telefone/WhatsApp** | +55 51 99531-3066 |
 | **E-mail** | *(pendente — obter com Luiza)* |
 | **Horário de Funcionamento** | Seg–Sex, horário comercial |
 | **Instagram** | @luizastoduto |
@@ -417,8 +417,8 @@ export const siteConfig = {
   cta: "Agendar pelo WhatsApp",
 
   // === CONTATO ===
-  whatsapp: "5551953130660", // +55 51 9531-3066
-  telefone: "+55 51 9531-3066",
+  whatsapp: "5551995313066", // +55 51 99531-3066
+  telefone: "+55 51 99531-3066",
   email: "",    // ❌ PENDENTE — obter com Luiza
   instagram: "@luizastoduto",
 
@@ -680,7 +680,7 @@ O site foi planejado para crescer junto com a carreira da Luiza:
 > Coletar antes de começar o desenvolvimento
 
 ```
-✅ WhatsApp/Telefone: +55 51 9531-3066
+✅ WhatsApp/Telefone: +55 51 99531-3066
 ✅ Título profissional: Cirurgiã-dentista | UFRGS
 ✅ CRO: CRO/RS 33802
 ✅ Slogan: "Entre risadas e sorrisos"
