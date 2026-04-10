@@ -14,7 +14,7 @@ type Props = {
 export const metadata: Metadata = {
   title: 'Contato | Dra. Luiza Stoduto',
   description:
-    'Entre em contato com a Dra. Luiza Stoduto: Medplex Santana e Odontologia Santa Helena, Porto Alegre. Segunda a sexta, 17h às 22h.',
+    'Entre em contato com a Dra. Luiza Stoduto: Medplex Santana, Porto Alegre. Segunda a sexta, 17h às 22h.',
 };
 
 export default async function ContatoPage({ params }: Props) {
@@ -30,14 +30,15 @@ export default async function ContatoPage({ params }: Props) {
           <p className="section-eyebrow">Contato e localização</p>
           <h1 className="section-title mt-2 text-5xl sm:text-6xl">Vamos agendar sua avaliação?</h1>
           <p className="mx-auto mt-4 max-w-3xl text-[#43545d]">
-            Dois consultórios em Porto Alegre — Medplex Santana e Odontologia Santa Helena. Entre em contato para
-            encaixes, urgências e avaliação personalizada.
+            Consultório no Medplex Santana, Porto Alegre. Entre em contato para encaixes, urgências e avaliação
+            personalizada.
           </p>
         </div>
       </section>
 
       <section className="lazy-section bg-white py-16">
-        <div className="section-shell grid gap-4 md:grid-cols-2">
+        {/* Um único local: cartão centralizado (antes eram duas colunas). */}
+        <div className="section-shell mx-auto grid max-w-2xl gap-4">
           {siteConfig.venues.map((venue) => (
             <article key={venue.id} className="rounded-2xl border border-[#d8e5ec] bg-[var(--areia)] p-5">
               <h2 className="font-[var(--font-display)] text-2xl text-[var(--azul-profundo)] sm:text-3xl">

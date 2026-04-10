@@ -1,15 +1,15 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="280" height="160" viewBox="0 0 280 160" fill="none">
-  <!-- Tile 280x160: ondas longas + linhas paralelas; segunda faixa deslocada metade do periodo no eixo X. -->
+<svg xmlns="http://www.w3.org/2000/svg" width="280" height="178" viewBox="0 0 280 178" fill="none">
+  <!-- Ondas com respiro sutil: ~10px entre linhas na mesma faixa; faixa 2 mais baixa para manter vão entre grupos. -->
   <g stroke-linecap="round" stroke-linejoin="round">
-    <!-- Faixa 1: vales (controle acima) -->
-    <path stroke="#2e7da3" stroke-opacity="0.22" stroke-width="1.2" d="M0 38 Q70 8 140 38 T280 38"/>
-    <path stroke="#5ba8c4" stroke-opacity="0.36" stroke-width="1.15" d="M0 45 Q70 12 140 45 T280 45"/>
-    <path stroke="#5ba8c4" stroke-opacity="0.28" stroke-width="1.05" d="M0 52 Q70 16 140 52 T280 52"/>
-    <path stroke="#5ba8c4" stroke-opacity="0.22" stroke-width="1" d="M0 59 Q70 20 140 59 T280 59"/>
-    <!-- Faixa 2: cristas, deslocada 140px (encaixa nas vales) -->
-    <path stroke="#2e7da3" stroke-opacity="0.2" stroke-width="1.15" d="M-140 118 Q-70 148 0 118 T140 118 T280 118 T420 118"/>
-    <path stroke="#5ba8c4" stroke-opacity="0.34" stroke-width="1.1" d="M-140 110 Q-70 140 0 110 T140 110 T280 110 T420 110"/>
-    <path stroke="#5ba8c4" stroke-opacity="0.27" stroke-width="1.02" d="M-140 102 Q-70 132 0 102 T140 102 T280 102 T420 102"/>
-    <path stroke="#5ba8c4" stroke-opacity="0.21" stroke-width="0.95" d="M-140 94 Q-70 124 0 94 T140 94 T280 94 T420 94"/>
+    <!-- Faixa 1: vales -->
+    <path stroke="#2e7da3" stroke-opacity="0.22" stroke-width="1.2" d="M0 34 Q70 4 140 34 T280 34"/>
+    <path stroke="#5ba8c4" stroke-opacity="0.36" stroke-width="1.15" d="M0 45 Q70 10 140 45 T280 45"/>
+    <path stroke="#5ba8c4" stroke-opacity="0.28" stroke-width="1.05" d="M0 56 Q70 16 140 56 T280 56"/>
+    <path stroke="#5ba8c4" stroke-opacity="0.22" stroke-width="1" d="M0 67 Q70 22 140 67 T280 67"/>
+    <!-- Faixa 2: cristas, deslocada 140px -->
+    <path stroke="#2e7da3" stroke-opacity="0.2" stroke-width="1.15" d="M-140 136 Q-70 166 0 136 T140 136 T280 136 T420 136"/>
+    <path stroke="#5ba8c4" stroke-opacity="0.34" stroke-width="1.1" d="M-140 124 Q-70 154 0 124 T140 124 T280 124 T420 124"/>
+    <path stroke="#5ba8c4" stroke-opacity="0.27" stroke-width="1.02" d="M-140 112 Q-70 142 0 112 T140 112 T280 112 T420 112"/>
+    <path stroke="#5ba8c4" stroke-opacity="0.21" stroke-width="0.95" d="M-140 100 Q-70 130 0 100 T140 100 T280 100 T420 100"/>
   </g>
 </svg>

@@ -81,7 +81,7 @@ export default async function HomePage({ params }: Props) {
               <span className="hero-float-text">Biosseguranca total</span>
             </div>
             <div className="hero-loc-pill absolute -bottom-4 left-4 rounded-xl border border-[#cce1ec] bg-white px-4 py-2 text-sm font-medium text-[#45606d] shadow-lg">
-              Porto Alegre · Medplex & Santa Helena
+              Porto Alegre · Medplex Santana
             </div>
           </div>
         </div>
@@ -168,7 +168,7 @@ export default async function HomePage({ params }: Props) {
               {[
                 'Transparência total durante cada procedimento.',
                 'Atendimento humanizado, sem pressa e com escuta real.',
-                'Atendimento no Medplex Santana e na Odontologia Santa Helena, em Porto Alegre.',
+                'Atendimento no Medplex Santana, em Porto Alegre.',
                 'Atendimento para crianças, adultos e idosos.',
                 'Ambiente leve e acolhedor para quem tem medo de dentista.',
               ].map((item) => (
@@ -307,73 +307,6 @@ export default async function HomePage({ params }: Props) {
             loading="lazy"
             referrerPolicy="no-referrer-when-downgrade"
             title="Mapa Medplex Santana"
-          />
-        </div>
-      </section>
-
-      {/* Santa Helena: seção separada com foto da unidade ao fundo (sem imagem repetida no card). */}
-      <section className="lazy-section relative overflow-hidden py-20">
-        <Image
-          src={siteConfig.venues[1].facadeImage.src}
-          alt={siteConfig.venues[1].facadeImage.alt}
-          fill
-          loading="lazy"
-          decoding="async"
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-[rgba(23,42,52,0.72)]" />
-        <div className="section-shell relative grid gap-8 lg:grid-cols-[1fr_1.1fr]">
-          <div className="space-y-4 rounded-2xl border border-white/20 bg-white/10 p-6 text-white backdrop-blur-sm">
-            <p className="section-eyebrow !text-[#d8bf95]">Segunda unidade</p>
-            <h2 className="font-[var(--font-display)] text-4xl">
-              {siteConfig.venues[1].title}, {siteConfig.venues[1].city}
-            </h2>
-            <div className="space-y-3 text-sm text-white/90">
-              <p className="flex items-start gap-2">
-                <MapPin size={16} className="mt-0.5 shrink-0" />
-                <span>
-                  {siteConfig.venues[1].street}
-                  {siteConfig.venues[1].complement ? ` — ${siteConfig.venues[1].complement}` : ''} —{' '}
-                  {siteConfig.venues[1].city}/{siteConfig.venues[1].state}
-                </span>
-              </p>
-              <p className="flex items-start gap-2">
-                <Clock3 size={16} className="mt-0.5 shrink-0" />
-                <span>
-                  {siteConfig.contact.businessHours.days} · {siteConfig.contact.businessHours.hours}
-                </span>
-              </p>
-              <p className="flex items-start gap-2">
-                <Sparkles size={16} className="mt-0.5 shrink-0" />
-                <span>@luizastoduto</span>
-              </p>
-            </div>
-            <div className="flex flex-wrap gap-3 pt-2">
-              <Link
-                href={siteConfig.venues[1].mapsOpenUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="cta-button inline-flex items-center rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-[var(--azul-profundo)]"
-              >
-                Abrir no Google Maps
-              </Link>
-              <Link
-                href={whatsappUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="cta-button inline-flex items-center rounded-full border border-white/35 px-5 py-2.5 text-sm font-semibold text-white"
-              >
-                Agendar agora
-              </Link>
-            </div>
-          </div>
-
-          <iframe
-            src={siteConfig.venues[1].mapEmbedUrl}
-            className="map-embed min-h-[360px] border border-white/20 bg-white"
-            loading="lazy"
-            referrerPolicy="no-referrer-when-downgrade"
-            title="Mapa Odontologia Santa Helena"
           />
         </div>
       </section>

@@ -1,6 +1,6 @@
 /** Unidade física: endereço, mapa e foto de fachada (quando houver). */
 export type SiteVenue = {
-  id: 'medplex' | 'santa-helena';
+  id: 'medplex';
   title: string;
   street: string;
   complement: string;
@@ -35,28 +35,6 @@ const venues: SiteVenue[] = [
     facadeImage: {
       src: '/images/luiza/predio-medplex.webp',
       alt: 'Prédio do consultório no Medplex Santana',
-    },
-  },
-  {
-    id: 'santa-helena',
-    title: 'Odontologia Santa Helena',
-    street: 'Rua João Berutti, 675',
-    complement: 'Odontologia Santa Helena',
-    neighborhood: '',
-    city: 'Porto Alegre',
-    state: 'RS',
-    zipCode: '',
-    mapEmbedUrl:
-      'https://www.google.com/maps?q=Rua+Jo%C3%A3o+Berutti,+675,+Porto+Alegre,+RS&output=embed',
-    mapsOpenUrl:
-      'https://www.google.com/maps/search/?api=1&query=Rua+Jo%C3%A3o+Berutti,+675,+Porto+Alegre,+RS',
-    directions: [
-      'Consultório na Odontologia Santa Helena, João Berutti.',
-      'Combine pelo WhatsApp qual unidade melhor se encaixa no seu horário.',
-    ],
-    facadeImage: {
-      src: '/images/Odontologia SANTA HELENA.webp',
-      alt: 'Fachada da Odontologia Santa Helena',
     },
   },
 ];
@@ -140,7 +118,7 @@ export const siteConfig = {
   },
 
   hero: {
-    eyebrow: 'CRO/RS 33802 · Medplex Santana & Odontologia Santa Helena · Porto Alegre',
+    eyebrow: 'CRO/RS 33802 · Medplex Santana · Porto Alegre',
     title: 'Entre risadas e sorrisos',
     subtitle:
       'Odontologia humanizada com leveza, carinho e transparência em cada atendimento.',
@@ -216,14 +194,14 @@ export const siteConfig = {
       description: 'Habilitada para harmonização facial e controle de bruxismo.',
     },
     {
-      title: 'Dois consultórios',
-      description: 'Atendimento no Medplex Santana (Gomes Jardim) e na Odontologia Santa Helena (João Berutti).',
+      title: 'Consultório Medplex',
+      description: 'Atendimento no Medplex Santana (Rua Gomes Jardim, Santana — Porto Alegre).',
     },
   ],
 
   /** Compatibilidade: primeiro mapa + direções do Medplex. Preferir `venues`. */
   location: {
-    shortLabel: 'Dois consultórios em Porto Alegre',
+    shortLabel: 'Consultório no Medplex Santana, Porto Alegre',
     mapEmbedUrl: venues[0].mapEmbedUrl,
     directions: venues[0].directions,
   },

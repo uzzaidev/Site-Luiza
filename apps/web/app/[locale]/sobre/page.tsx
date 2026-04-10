@@ -105,7 +105,7 @@ export default async function SobrePage({ params }: Props) {
               'UFRGS - Formacao em Odontologia (Clinico Geral)',
               'Habilitacao em Toxina Botulinica aplicada a Odontologia',
               'Registro profissional ativo: CRO/RS 33802',
-              'Atendimento no Medplex Santana e na Odontologia Santa Helena, Porto Alegre',
+              'Atendimento no Medplex Santana, Porto Alegre',
             ].map((item, index) => (
               <div key={item} className="rounded-2xl border border-[#d8e5ec] bg-[var(--areia)] px-5 py-4">
                 <p className="text-xs font-semibold uppercase tracking-[0.24em] text-[var(--madeira)]">Etapa {index + 1}</p>

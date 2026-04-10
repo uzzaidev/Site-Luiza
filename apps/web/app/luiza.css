@@ -80,8 +80,8 @@ body {
   z-index: 0;
   pointer-events: none;
   background-image: url('/images/patterns/wave-layers-hero.svg');
-  /* Largura/altura alinhadas ao viewBox do tile (280x) para evitar costura visivel */
-  background-size: 280px 160px;
+  /* Largura/altura = tile SVG (280×178) — costura alinhada ao viewBox */
+  background-size: 280px 178px;
   background-repeat: repeat;
 }
 
