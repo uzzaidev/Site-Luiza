@@ -41,8 +41,12 @@ const venues: SiteVenue[] = [
 
 export const siteConfig = {
   identity: {
+    /** Nome profissional (cartão, CRO, atendimento). */
     name: 'Dra. Luiza Stoduto',
-    legalName: 'Stoduto Odontologia',
+    /** Marca do site / domínio minhadentistaluiza.com.br (títulos, OG, rodapé). */
+    legalName: 'Minha Dentista Luiza',
+    /** Slug do domínio sem TLD — útil para copy e SEO. */
+    brandSlug: 'minhadentistaluiza',
     cro: 'CRO/RS 33802',
     tagline: 'Entre risadas e sorrisos',
     description:
@@ -50,24 +54,28 @@ export const siteConfig = {
   },
 
   urls: {
-    production: 'https://stodutoodontologia.com.br',
+    /** Domínio canônico (OG, sitemap, metadataBase). Ajuste se trocar de domínio. */
+    production: 'https://minhadentistaluiza.com.br',
     staging: '',
     basePath: '/',
   },
+
+  /** Imagem social (WhatsApp, Facebook, LinkedIn): hero da home; URL absoluta usa `urls.production`. */
+  openGraphImagePath: '/images/luiza/luiza_jaleco_atualizado_hero2.jpeg',
 
   /** Unidades de atendimento (mapa, endereço e foto por local). */
   venues,
 
   contact: {
     email: {
-      primary: 'contato@stodutoodontologia.com.br',
+      primary: 'contato@minhadentistaluiza.com.br',
       secondary: '',
     },
     phone: {
       primary: '+55 51 99531-3066',
       whatsapp: '5551995313066',
       whatsappMessage:
-        'Olá, Dra. Luiza! Vim pelo site e gostaria de agendar uma avaliação odontológica.',
+        'Olá, Dra. Luiza! Vim pelo site Minha Dentista Luiza (minhadentistaluiza.com.br) e gostaria de agendar uma avaliação odontológica.',
     },
     address: {
       hasPhysicalAddress: true,

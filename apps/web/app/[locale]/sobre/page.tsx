@@ -13,7 +13,7 @@ type Props = {
 };
 
 export const metadata: Metadata = {
-  title: 'Sobre a Dra. Luiza Stoduto | Stoduto Odontologia',
+  title: 'Sobre a Dra. Luiza Stoduto',
   description: 'Conheca a historia, abordagem de atendimento e formacao da Dra. Luiza Stoduto em Porto Alegre.',
 };
 

@@ -12,7 +12,7 @@ type Props = {
 };
 
 export const metadata: Metadata = {
-  title: 'Contato | Dra. Luiza Stoduto',
+  title: 'Contato',
   description:
     'Entre em contato com a Dra. Luiza Stoduto: Medplex Santana, Porto Alegre. Segunda a sexta, 17h às 22h.',
 };

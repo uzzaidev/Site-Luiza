@@ -24,12 +24,12 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 
   if (!service) {
     return {
-      title: 'Serviço não encontrado | Dra. Luiza Stoduto',
+      title: 'Serviço não encontrado',
     };
   }
 
   return {
-    title: `${service.title} em Porto Alegre | Dra. Luiza Stoduto`,
+    title: `${service.title} em Porto Alegre`,
     description: service.fullDescription,
     alternates: {
       canonical: `${siteConfig.urls.production}/servicos/${service.slug}`,

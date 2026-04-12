@@ -30,7 +30,7 @@ export function Header() {
           <div className="relative h-11 w-11 overflow-hidden rounded-full border border-[#d9e6ef] bg-white">
             <Image
               src="/images/luiza/logo-ls.jpg"
-              alt="Logo Dra. Luiza Stoduto"
+              alt={`Logo ${siteConfig.identity.legalName}`}
               fill
               sizes="44px"
               className="object-cover"
@@ -39,8 +39,9 @@ export function Header() {
           </div>
           <div className="hidden sm:block">
             <p className="font-[var(--font-display)] text-xl leading-tight text-[var(--azul-profundo)]">
-              Dra. Luiza Stoduto
+              {siteConfig.identity.name}
             </p>
+            <p className="text-[11px] font-medium leading-tight text-[#5a6d75]">{siteConfig.identity.legalName}</p>
             <p className="text-xs uppercase tracking-[0.2em] text-[var(--madeira)]">{siteConfig.identity.cro}</p>
           </div>
         </Link>

@@ -15,7 +15,7 @@ type Props = {
 };
 
 export const metadata: Metadata = {
-  title: 'Serviços odontológicos | Dra. Luiza Stoduto',
+  title: 'Serviços odontológicos',
   description:
     'Conheça todos os serviços da Dra. Luiza Stoduto em Porto Alegre: urgência, periodontal, facetas, clareamento e muito mais.',
 };

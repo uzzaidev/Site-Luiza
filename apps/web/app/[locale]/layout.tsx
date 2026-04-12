@@ -26,22 +26,42 @@ const dmSans = DM_Sans({
   display: 'swap',
 });
 
+const canonicalBase = new URL(siteConfig.urls.production);
+const ogImageUrl = new URL(siteConfig.openGraphImagePath, canonicalBase).toString();
+
 export const metadata: Metadata = {
-  title: `${siteConfig.identity.name} | Odontologia em Porto Alegre`,
+  title: {
+    default: `${siteConfig.identity.name} | ${siteConfig.identity.legalName}`,
+    template: `%s | ${siteConfig.identity.legalName}`,
+  },
   description: siteConfig.identity.description,
-  metadataBase: new URL(siteConfig.urls.production),
+  metadataBase: canonicalBase,
   icons: {
     icon: '/images/luiza/logo-ls.jpg',
     apple: '/images/luiza/logo-ls.jpg',
   },
   openGraph: {
-    title: siteConfig.identity.name,
+    title: `${siteConfig.identity.name} — ${siteConfig.identity.legalName}`,
     description: siteConfig.identity.description,
     url: siteConfig.urls.production,
-    siteName: siteConfig.identity.name,
+    siteName: siteConfig.identity.legalName,
     locale: 'pt_BR',
     type: 'website',
-    images: ['/images/luiza/luiza_jaleco_atualizado_hero2.jpeg'],
+    /* URL absoluta + dimensões ajudam WhatsApp/Facebook a exibir a foto do hero em vez do ícone genérico */
+    images: [
+      {
+        url: ogImageUrl,
+        width: 1365,
+        height: 2048,
+        alt: `${siteConfig.identity.name} — odontologia em Porto Alegre`,
+      },
+    ],
+  },
+  twitter: {
+    card: 'summary_large_image',
+    title: `${siteConfig.identity.name} | ${siteConfig.identity.legalName}`,
+    description: siteConfig.identity.description,
+    images: [ogImageUrl],
   },
 };
 

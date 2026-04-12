@@ -15,10 +15,11 @@ export function Footer() {
         <div className="space-y-4">
           <div className="inline-flex items-center gap-3">
             <div className="relative h-12 w-12 overflow-hidden rounded-full border border-[#d9e6ef] bg-white">
-              <Image src="/images/luiza/logo-ls.jpg" alt="Logo Dra. Luiza Stoduto" fill sizes="48px" className="object-cover" />
+              <Image src="/images/luiza/logo-ls.jpg" alt={`Logo ${siteConfig.identity.legalName}`} fill sizes="48px" className="object-cover" />
             </div>
             <div>
-              <p className="font-[var(--font-display)] text-xl text-[var(--azul-profundo)]">Dra. Luiza Stoduto</p>
+              <p className="font-[var(--font-display)] text-xl text-[var(--azul-profundo)]">{siteConfig.identity.name}</p>
+              <p className="text-[11px] font-medium text-[#5a6d75]">{siteConfig.identity.legalName}</p>
               <p className="text-xs uppercase tracking-[0.2em] text-[var(--madeira)]">{siteConfig.identity.cro}</p>
             </div>
           </div>
@@ -87,7 +88,9 @@ export function Footer() {
 
       <div className="border-t border-[#e5ecef] bg-[#f8fbfd]">
         <div className="mx-auto flex w-full max-w-7xl flex-col gap-1 px-4 py-4 text-xs text-[#6a7982] sm:px-6 lg:px-8">
-          <p>(c) {year} {siteConfig.identity.name}. Todos os direitos reservados.</p>
+          <p>
+            © {year} {siteConfig.identity.legalName} · {siteConfig.identity.name}. Todos os direitos reservados.
+          </p>
           <p>{siteConfig.identity.cro}</p>
         </div>
       </div>
