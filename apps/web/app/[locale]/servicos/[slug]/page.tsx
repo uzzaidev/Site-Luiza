@@ -6,6 +6,7 @@ import { getServiceBySlug, services } from '@/data/services';
 import { getWhatsAppUrl } from '@/lib/contact';
 import { siteConfig } from '@/site.config';
 import { LaceOrnament } from '@/components/ui/LaceOrnament';
+import { buildFAQSchema, buildBreadcrumbSchema, buildMedicalProcedureSchema } from '@/lib/schema';
 
 type Props = {
   params: Promise<{
@@ -49,8 +50,28 @@ export default async function ServiceDetailPage({ params }: Props) {
 
   const whatsappUrl = getWhatsAppUrl(`Olá, Dra. Luiza! Gostaria de agendar uma avaliação de ${service.title}.`);
 
+  const faqSchema = buildFAQSchema(service.faqs);
+  const breadcrumbSchema = buildBreadcrumbSchema([
+    { name: 'Início', href: '/' },
+    { name: 'Serviços', href: '/servicos' },
+    { name: service.title, href: `/servicos/${service.slug}` },
+  ]);
+  const medicalSchema = buildMedicalProcedureSchema(service);
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(medicalSchema) }}
+      />
       <section className="relative overflow-hidden lace-tile bg-[var(--areia)] py-16">
         <LaceOrnament size="lg" className="pointer-events-none absolute -right-28 -top-20 opacity-45" />
         <div className="section-shell relative">

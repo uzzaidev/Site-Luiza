@@ -7,6 +7,7 @@ import { siteConfig } from '@/site.config';
 import { getWhatsAppUrl } from '@/lib/contact';
 import { LaceOrnament } from '@/components/ui/LaceOrnament';
 import { ServiceOrbIcon } from '@/lib/service-icons';
+import { buildServiceListSchema } from '@/lib/schema';
 
 type Props = {
   params: Promise<{
@@ -25,9 +26,14 @@ export default async function ServicosPage({ params }: Props) {
   unstable_setRequestLocale(locale);
 
   const whatsappUrl = getWhatsAppUrl('Olá, Dra. Luiza! Quero saber qual tratamento é ideal para mim.');
+  const serviceListSchema = buildServiceListSchema(services);
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceListSchema) }}
+      />
       <section className="relative overflow-hidden lace-tile bg-[var(--areia)] py-20">
         <LaceOrnament size="lg" className="pointer-events-none absolute -left-20 -top-12 opacity-45" />
         <div className="section-shell relative">

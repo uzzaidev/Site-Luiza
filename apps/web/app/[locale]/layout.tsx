@@ -5,6 +5,7 @@ import { notFound } from 'next/navigation';
 import { Cormorant_Garamond, DM_Sans } from 'next/font/google';
 import { locales } from '@/i18n';
 import { siteConfig } from '@/site.config';
+import { buildDentistSchema, buildWebSiteSchema } from '@/lib/schema';
 import '../globals.css';
 import '../luiza.css';
 import { Header } from '@/components/Header';
@@ -85,8 +86,20 @@ export default async function LocaleLayout({
 
   const messages = await getMessages();
 
+  const dentistSchema = buildDentistSchema();
+  const webSiteSchema = buildWebSiteSchema();
+
   return (
     <html lang={locale}>
+      {/* Structured Data — global */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(dentistSchema) }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(webSiteSchema) }}
+      />
       <body className={`${cormorantGaramond.variable} ${dmSans.variable} font-[var(--font-body)] antialiased`}>
         <NextIntlClientProvider messages={messages}>
           <ScrollRevealManager />

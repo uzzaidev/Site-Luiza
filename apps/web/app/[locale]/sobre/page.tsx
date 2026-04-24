@@ -5,6 +5,7 @@ import { unstable_setRequestLocale } from 'next-intl/server';
 import { LaceOrnament } from '@/components/ui/LaceOrnament';
 import { getWhatsAppUrl } from '@/lib/contact';
 import { siteConfig } from '@/site.config';
+import { buildPersonSchema } from '@/lib/schema';
 
 type Props = {
   params: Promise<{
@@ -14,7 +15,7 @@ type Props = {
 
 export const metadata: Metadata = {
   title: 'Sobre a Dra. Luiza Stoduto',
-  description: 'Conheca a historia, abordagem de atendimento e formacao da Dra. Luiza Stoduto em Porto Alegre.',
+  description: 'Conheça a história, abordagem de atendimento e formação da Dra. Luiza Stoduto em Porto Alegre. Formada pela UFRGS, CRO/RS 33802.',
 };
 
 export default async function SobrePage({ params }: Props) {
@@ -22,9 +23,14 @@ export default async function SobrePage({ params }: Props) {
   unstable_setRequestLocale(locale);
 
   const whatsappUrl = getWhatsAppUrl('Ola, Dra. Luiza! Gostaria de saber mais sobre seu atendimento.');
+  const personSchema = buildPersonSchema();
 
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+      />
       <section className="relative h-[74vh] min-h-[470px] max-h-[640px] overflow-hidden sm:h-auto sm:min-h-0 sm:max-h-none sm:py-24">
         <Image
           src="/images/luiza/luiza-informal-1.jpg"
